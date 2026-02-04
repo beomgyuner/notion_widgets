@@ -1,32 +1,35 @@
 <style>
-.marquee {
+  .marquee {
     font-size: 2vw;
     color: #a3eaff;
     font-family: 'Arial Narrow', Arial, Helvetica, sans-serif;
     height: 2.5vw;
     overflow: hidden;
     position: relative;
-}
-<div class="marquee">
-  <div>
-    <span>++++ this is a running text aka marquee using html &amp; css + text length is limited to the width</span>
-    <!-- you need the second one - otherwise there is a lot of blank space and it will look odd -->
-    <span>++++ this is a running text aka marquee using html &amp; css + text length is limited to the width</span>
-  </div>
-</div>
-.marquee div {
-    display: block;
+    background: #fff
+  }
+
+  .marquee div {
+    display: flex; 
     width: 200%;
     position: absolute; 
-    overflow: hidden;
     animation: marquee 12s linear infinite;
-}
-.marquee span {
-    float: left;
+  }
+
+  .marquee span {
     width: 50%;
-}
-@keyframes marquee {
+    white-space: nowrap; 
+  }
+
+  @keyframes marquee {
     0% { left: 0; }
     100% { left: -100%; }
-}
+  }
 </style>
+
+<div class="marquee">
+  <div>
+    <span>++++ 1800-CALL-ME-WHEN-YOURE-BORED</span>
+    <span>++++ 1800-CALL-ME-WHEN-YOURE-BORED</span>
+  </div>
+</div>
