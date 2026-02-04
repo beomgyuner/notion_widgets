@@ -1,8 +1,16 @@
 <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    width: 100%;
+    height: 100%;
+  }
+
   .buttons-n-blinkers {
     overflow: hidden;
     position: relative;
-    width: 1170px;
+    width: 100%;
   }
 
   @keyframes marquee {
@@ -11,6 +19,8 @@
   }
 
   .buttons-n-blinkers > div {
+    display: flex; /* Keeps images in a single row */
+    align-items: center;
     animation: marquee 12s linear infinite;
     animation-play-state: running; 
     animation-delay: -6s;
@@ -19,17 +29,21 @@
     white-space: nowrap; 
   }
 
+  .buttons-n-blinkers img {
+    display: block; /* Removes tiny gap at the bottom of images */
+  }
 </style>
 
 <div class="buttons-n-blinkers">
-  <div class="play"> <img src="https://file.garden/aXTkw7hiK3vn4ais/dd7izsc-772e7cfb-14b4-4a6d-8451-b9609512e0f7.png">
+  <div class="play"> 
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/dd7izsc-772e7cfb-14b4-4a6d-8451-b9609512e0f7.png">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_305f46d7228ab500291b29f2ed3edb6e_3c61faed_100.png">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/ddd1ovn-43e30823-3b43-4712-a226-f304c48492fe.png">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/dd720uo-90af08ce-af45-40e8-9621-cdc37b640803.gif">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_29985d590c7f832c5d2a43abd906cca4_6f1871cf_250.gif">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/ribbons.png">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/cutepokemon.gif">
-<img src="https://file.garden/aXTkw7hiK3vn4ais/dd7izsc-772e7cfb-14b4-4a6d-8451-b9609512e0f7.png">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/dd7izsc-772e7cfb-14b4-4a6d-8451-b9609512e0f7.png">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_305f46d7228ab500291b29f2ed3edb6e_3c61faed_100.png">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/ddd1ovn-43e30823-3b43-4712-a226-f304c48492fe.png">
     <img src="https://file.garden/aXTkw7hiK3vn4ais/dd720uo-90af08ce-af45-40e8-9621-cdc37b640803.gif">
