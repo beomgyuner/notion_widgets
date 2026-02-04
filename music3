@@ -1,0 +1,130 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script src="//static.tumblr.com/gtjt4bo/QRmphdsdv/glenplayer02.js"></script>
+ 
+<style>
+ 
+#box{
+overflow:hidden;
+position:fixed;
+width:18px;
+height:18px;
+top:50px; /* you can change the number or change it to bottom*/
+left:50px; /* you can change the number or change it to right*/
+/* change color of the border + background and roundness */
+background: #F0C2BC;
+border: 1px solid #FCEFED;
+border-radius:3px;
+}
+ 
+#icon{
+/* this is for the positioning of the music gif: */
+margin-top:1px;
+margin-right:1px;
+-webkit-transition: all 0.5s linear;
+-moz-transition: all 0.5s linear;
+transition: all 0.5s linear;
+margin-bottom:8px;
+}
+ 
+#box:hover #icon{
+margin-top:-20px;
+-webkit-transition: all 0.5s linear;
+-moz-transition: all 0.5s linear;
+transition: all 0.5s linear;
+}
+ 
+#musicbox{
+width:8px;
+height:8px;
+overflow:hidden;
+margin-left:5px;
+margin-top:-1px;
+}
+ 
+#music{
+margin-top: -4px;
+margin-left:-40px;
+}
+ 
+.playy, .pausee {
+color:#fff;
+position: relative;
+bottom:-4px;
+left: 40px;
+cursor: pointer;
+left:20px;
+font-size:10px;
+ 
+}
+ 
+.pausee {display:none;}
+ 
+.sonata {
+margin-left:10px;
+color:#fff; /* color of music note symbol */
+}
+ 
+.labeltext {
+margin-left:27px;
+position:relative;
+bottom:16px;
+font-family: times;
+font-size:9px;
+color:#fff; /* color of song title */
+}
+ 
+#pop {
+-webkit-animation: pop 1s ease-in-out infinite alternate;
+animation: pop 1s ease-in-out infinite alternate;
+-moz-animation: pop 1s ease-in-out infinite alternate;
+}
+ 
+@keyframes pop {
+from {
+transform:scale(0.95)
+}
+ 
+50% {
+transform:scale(1)
+}
+ 
+to {
+transform:scale(0.95)
+}
+}
+ 
+@-webkit-keyframes pop {
+from {
+-webkit-transform:scale(0.95)
+ 
+}
+ 
+50% {
+-webkit-transform:scale(1)
+ 
+}
+ 
+to {
+-webkit-transform:scale(0.95)
+ 
+}
+ 
+}
+ 
+</style>
+<body>
+ 
+<div id="box"><div id="icon">
+<div id="pop"><img src="http://media.tumblr.com/tumblr_m7w2py1dEP1r6o8v2.gif"/>
+</div></div>
+<div id="musicbox"><div id="music">
+ 
+<div class="music-controls" onclick="songstart();">
+<div class="playy">►</div>
+<div class="pausee">♪</div>
+ 
+<audio id="tune" src="https://dl.dropbox.com/s/qiiudgbz3z9uu3b/Puella%20Magi%20Madoka%20Magica%20Akogare%20Saita%20-%20Madoka%20Kaname%20%28Character%20Song%29.mp3"audio"></audio>
+ 
+</div></div></div>
+ 
+</body>
