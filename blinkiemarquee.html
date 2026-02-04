@@ -1,0 +1,54 @@
+<div class="buttons-n-blinkers">
+  <div>
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_04f728a9b2248b7224441e0900361d04_8316d668_400.png">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/ddd1ovn-43e30823-3b43-4712-a226-f304c48492fe.png">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_305f46d7228ab500291b29f2ed3edb6e_3c61faed_100.png">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/dd7izsc-772e7cfb-14b4-4a6d-8451-b9609512e0f7.png">
+    </a>
+  </div>
+</div>
+<head>
+  <style>
+    .buttons-n-blinkers {
+  overflow: hidden;
+  width: fit-content; /* just for demonstration */
+  position: relative;
+  width: 300px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.buttons-n-blinkers > div {
+  animation: marquee 12s linear infinite;
+  animation-play-state: paused;
+  animation-delay: -6s; /* This MUST be -duration/2 */
+  width: 100%;
+  min-width: fit-content;
+  text-wrap: nowrap;
+}
+
+.buttons-n-blinkers > div.follower {
+  position: absolute;
+  top: 0;
+  animation-delay: 0s;
+}
+
+.buttons-n-blinkers > div.play {
+  animation-play-state: running;
+}
+
+.buttons-n-blinkers:hover > div.play {
+  animation-play-state: paused;
+}
+
+  </style>
+</head>
+
