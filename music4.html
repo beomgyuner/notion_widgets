@@ -12,12 +12,15 @@
 
     /* --- GENERAL STYLES --- */
     body {
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent; 
     }
 
     button, input, label, option, select, table, textarea {
@@ -28,13 +31,13 @@
 
     /* --- PLAYER CONTAINER --- */
     .player {
-      width: fit-content;
-      border: #CECECE solid 2px;
-      border-radius: 100px;
-      margin-left: auto;
-      margin-right: auto;
-      background: linear-gradient(0deg, rgba(205,205,205,1) 0%, rgba(230,230,230,1) 30%, rgba(255,255,255,1) 100%);
-      padding: 5px;
+    width: fit-content;
+    max-width: 100vw; 
+    border: #CECECE solid 2px;
+    border-radius: 100px;
+    background: linear-gradient(0deg, rgba(205,205,205,1) 0%, rgba(230,230,230,1) 30%, rgba(255,255,255,1) 100%);
+    padding: 5px;
+    box-sizing: border-box; 
     }
 
     .window {
