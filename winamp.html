@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webamp Player</title>
+    <script src="https://unpkg.com/webamp@1.4.0/built/webamp.bundle.min.js"></script>
+    
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        #winamp-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="winamp-container"></div>
+
+    <script>
+        const Winamp = window.Webamp;
+        
+        // Check if Webamp is supported in the browser
+        if (Winamp.browserIsSupported()) {
+            const webamp = new Winamp({
+                initialTracks: [
+                    {
+                        metaData: {
+                            artist: "HUS",
+                            title: "Luv Sauce",
+                        },
+                        url: "https://file.garden/aXTkw7hiK3vn4ais/Luv%20Sauce.mp3",
+                    },
+                    {
+                        metaData: {
+                            artist: "No No No No No",
+                            title: "C-Real",
+                        },
+                        url: "https://file.garden/aXTkw7hiK3vn4ais/No%20No%20No%20No%20No%20(No%20No%20No%20No%20No).mp3",
+                    }
+                ],
+                initialSkin: {
+                    url: "https://file.garden/aXTkw7hiK3vn4ais/Fruits%20basket%20-%20Tohru%20Raspberry%20ver.wsz"
+                },
+            });
+
+            // Render Webamp into the container
+            webamp.renderWhenReady(document.getElementById('winamp-container'));
+        } else {
+            console.error("Webamp is not supported in this browser.");
+        }
+    </script>
+</body>
+</html>
