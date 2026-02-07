@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- NOTION EMBED RESET --- */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000; /* TikTok background is black */
+            font-family: 'proxima-nova', 'Inter', sans-serif;
+        }
+
+        /* --- TIKTOK CONTAINER --- */
+        .tiktok-video {
+            position: relative;
+            width: 100%;
+            max-width: 380px; /* Standard phone width */
+            height: 95vh;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* The actual Video element */
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fill the screen */
+        }
+
+        /* --- RIGHT SIDEBAR (INTERACTIONS) --- */
+        .sidebar {
+            position: absolute;
+            right: 12px;
+            bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .icon-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        .icon-group i {
+            font-size: 28px;
+            margin-bottom: 4px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .icon-group span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Profile Icon with Plus Sign */
+        .profile-pic {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: url('https://via.placeholder.com/50') center/cover;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .profile-pic::after {
+            content: '+';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fe2c55; /* TikTok Red */
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        /* Spinning Record */
+        .music-record {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #333, #000);
+            border-radius: 50%;
+            border: 8px solid #222;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- BOTTOM TEXT SECTION --- */
+        .bottom-details {
+            position: absolute;
+            bottom: 20px;
+            left: 15px;
+            color: white;
+            z-index: 10;
+            max-width: 70%;
+        }
+
+        .username {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .caption {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .music-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .music-info i { font-size: 12px; }
+
+        .scrolling-text {
+            white-space: nowrap;
+            overflow: hidden;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tiktok-video">
+        <video id="player" loop playsinline>
+            <source src="https://file.garden/aXTkw7hiK3vn4ais/ssstik.io_@jazz1.zi_1770485122698.mp4" type="video/mp4">
+        </video>
+
+        <div class="sidebar">
+            <div class="profile-pic"></div>
+            
+            <div class="icon-group" id="likeBtn" onclick="toggleLike()">
+                <i class="fas fa-heart"></i>
+                <span>1.2M</span>
+            </div>
+
+            <div class="icon-group">
+                <i class="fas fa-comment-dots"></i>
+                <span>15.4K</span>
+            </div>
+
+            <div class="icon-group">
+                <i class="fas fa-share"></i>
+                <span>Share</span>
+            </div>
+
+            <div class="music-record"></div>
+        </div>
+
+        <div class="bottom-details">
+            <div class="username">@ipodcord</div>
+            <div class="caption">moonwalkin’ is too good #LNGSHOT #Moonwalkin #song #cover #SHOTCALLERS</div>
+            <div class="music-info">
+                <i class="fas fa-music"></i>
+                <div class="scrolling-text">original sound - @ipodcord</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('player');
+        
+        // Simple click to play/pause
+        document.body.onclick = function() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        };
+
+        // Heart animation logic
+        function toggleLike() {
+            const heart = document.querySelector('#likeBtn i');
+            if (heart.style.color === 'rgb(254, 44, 85)') {
+                heart.style.color = 'white';
+            } else {
+                heart.style.color = '#fe2c55'; // TikTok Red
+                heart.style.transform = 'scale(1.2)';
+                setTimeout(() => heart.style.transform = 'scale(1)', 100);
+            }
+        }
+    </script>
+</body>
+</html>
