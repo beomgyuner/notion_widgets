@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Carousel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Reset & Body Styling for presentation */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fafafa;
+            overflow: hidden; /* Prevent body scrollbars */
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            width: 100%;
+            max-width: 450px; /* Typical Instagram post width */
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Image Track */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-track img {
+            width: 100%;
+            flex-shrink: 0; /* Prevents images from shrinking */
+            display: block; /* Removes extra space below images */
+            max-height: 600px; /* Optional: Constrain image height */
+            object-fit: cover; /* Ensures images cover the area */
+        }
+
+        /* Navigation Arrows */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-arrow.left {
+            left: 10px;
+        }
+
+        .carousel-arrow.right {
+            right: 10px;
+        }
+
+        .carousel-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Dots Indicator */
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #0095f6; /* Instagram blue */
+        }
+
+        /* Optional: Caption Area */
+        .carousel-caption {
+            padding: 12px;
+            font-size: 0.9em;
+            color: #262626;
+            border-top: 1px solid #efefef;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <img src="https://file.garden/aXTkw7hiK3vn4ais/download%20(7).jpg" 
+            <img src="https://file.garden/aXTkw7hiK3vn4ais/download%20(7).png" 
+            <img src="https://file.garden/aXTkw7hiK3vn4ais/download%20(7)%20(3).png">
+            <img src="https://file.garden/aXTkw7hiK3vn4ais/download%20(7)%20(1).png">
+            <img src="https://file.garden/aXTkw7hiK3vn4ais/download%20(7)%20(2).png">
+        </div>
+
+        <button class="carousel-arrow left" disabled><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+
+        <div class="carousel-dots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+            <div class="dot" data-index="4"></div>
+        </div>
+
+        <div class="carousel-caption">
+            <strong>yourusername</strong> This is a cool carousel post! #instagram #carousel #webdev
+        </div>
+    </div>
+
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const images = Array.from(track.children);
+        const leftArrow = document.querySelector('.carousel-arrow.left');
+        const rightArrow = document.querySelector('.carousel-arrow.right');
+        const dotsNav = document.querySelector('.carousel-dots');
+        const dots = Array.from(dotsNav.children);
+
+        let currentImageIndex = 0;
+        const imageWidth = images[0].getBoundingClientRect().width; // Get width of one image
+
+        // Function to move the track
+        const moveToImage = (index) => {
+            track.style.transform = `translateX(-${index * imageWidth}px)`;
+            currentImageIndex = index;
+            updateArrowsAndDots();
+        };
+
+        // Update arrow button states and dot active class
+        const updateArrowsAndDots = () => {
+            leftArrow.disabled = currentImageIndex === 0;
+            rightArrow.disabled = currentImageIndex === images.length - 1;
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentImageIndex].classList.add('active');
+        };
+
+        // Event Listeners for arrows
+        rightArrow.addEventListener('click', () => {
+            if (currentImageIndex < images.length - 1) {
+                moveToImage(currentImageIndex + 1);
+            }
+        });
+
+        leftArrow.addEventListener('click', () => {
+            if (currentImageIndex > 0) {
+                moveToImage(currentImageIndex - 1);
+            }
+        });
+
+        // Event Listeners for dots
+        dotsNav.addEventListener('click', (e) => {
+            if (e.target.classList.contains('dot')) {
+                const targetIndex = parseInt(e.target.dataset.index);
+                moveToImage(targetIndex);
+            }
+        });
+
+        // Initialize carousel on load
+        window.addEventListener('load', () => {
+            // Recalculate imageWidth if window resizes (important for responsiveness)
+            // Or if images load with different sizes
+            const updatedImageWidth = images[0].getBoundingClientRect().width;
+            track.style.transform = `translateX(-${currentImageIndex * updatedImageWidth}px)`;
+            updateArrowsAndDots();
+        });
+
+        // Handle window resize for responsiveness
+        window.addEventListener('resize', () => {
+            const updatedImageWidth = images[0].getBoundingClientRect().width;
+            track.style.transform = `translateX(-${currentImageIndex * updatedImageWidth}px)`;
+            // No need to call updateArrowsAndDots, as index doesn't change
+        });
+
+        // Initial setup
+        updateArrowsAndDots();
+    </script>
+</body>
+</html>
