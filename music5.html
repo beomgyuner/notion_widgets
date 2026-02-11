@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Player</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #d9d9de;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.player {
+    width: 100%;
+    max-width: 750px;
+    padding: 30px;
+    border-radius: 30px;
+    background: #d9d9de;
+    box-shadow: 15px 15px 30px #bebec3,
+                -15px -15px 30px #ffffff;
+}
+
+/* TOP SECTION */
+.top {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: inset 8px 8px 15px #bebec3,
+                inset -8px -8px 15px #ffffff;
+}
+
+.album-art {
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.song-info {
+    flex: 1;
+}
+
+.status {
+    color: #3cb371;
+    font-weight: bold;
+}
+
+.song-title {
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+/* CONTROLS */
+.controls {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+    font-weight: 500;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    color: #666;
+}
+
+.controls button:hover {
+    color: #333;
+}
+
+/* PROGRESS BAR */
+.progress-container {
+    margin-top: 25px;
+    height: 10px;
+    background: #d9d9de;
+    border-radius: 10px;
+    box-shadow: inset 5px 5px 10px #bebec3,
+                inset -5px -5px 10px #ffffff;
+    cursor: pointer;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background: #3cb371;
+    border-radius: 10px;
+}
+
+/* PLAYLIST BUTTONS */
+.bottom-buttons {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.song-button {
+    height: 55px;
+    border-radius: 15px;
+    background: #d9d9de;
+    box-shadow: 8px 8px 15px #bebec3,
+                -8px -8px 15px #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.song-button:active {
+    box-shadow: inset 5px 5px 10px #bebec3,
+                inset -5px -5px 10px #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .controls {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="player">
+
+    <div class="top">
+        <div class="album-art" id="albumArt"></div>
+        <div class="song-info">
+            <div class="status" id="status">Paused</div>
+            <div class="song-title" id="title">Song Title</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="prevSong()">PREVIOUS</button>
+        <button onclick="togglePlay()">PLAY / PAUSE</button>
+        <button onclick="nextSong()">NEXT</button>
+    </div>
+
+    <div class="progress-container" onclick="setProgress(event)">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="bottom-buttons" id="playlist"></div>
+
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+const songs = [
+    {
+        title: "Lost Island - ENHYPEN",
+        src: "https://file.garden/aXTkw7hiK3vn4ais/Lost%20Island.mp3",
+        cover: "https://file.garden/aXTkw7hiK3vn4ais/%EA%92%B0%E0%AD%A8%E0%AD%A7%EA%92%B1.jpg"
+    },
+    {
+        title: "No No No No No - C-Real",
+        src: "https://file.garden/aXTkw7hiK3vn4ais/No%20No%20No%20No%20No%20(No%20No%20No%20No%20No).mp3",
+        cover: "https://file.garden/aXTkw7hiK3vn4ais/cr_%20seonsway%20on%20ig.jpg"
+    },
+    {
+        title: "Luv Sauce - HUS",
+        src: "https://file.garden/aXTkw7hiK3vn4ais/Luv%20Sauce.mp3",
+        cover: "https://file.garden/aXTkw7hiK3vn4ais/%E0%B1%A8%E2%99%B1%E0%A7%8E.jpg"
+    }
+];
+
+let currentSong = 0;
+
+const audio = document.getElementById("audio");
+const title = document.getElementById("title");
+const albumArt = document.getElementById("albumArt");
+const statusText = document.getElementById("status");
+const progress = document.getElementById("progress");
+const playlistContainer = document.getElementById("playlist");
+
+function loadSong(index) {
+    const song = songs[index];
+    title.textContent = song.title;
+    audio.src = song.src;
+    albumArt.style.backgroundImage = `url(${song.cover})`;
+}
+
+function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+        statusText.textContent = "BETTER CR";
+    } else {
+        audio.pause();
+        statusText.textContent = "Paused";
+    }
+}
+
+function nextSong() {
+    currentSong = (currentSong + 1) % songs.length;
+    loadSong(currentSong);
+    audio.play();
+    statusText.textContent = "BETTER CR";
+}
+
+function prevSong() {
+    currentSong = (currentSong - 1 + songs.length) % songs.length;
+    loadSong(currentSong);
+    audio.play();
+    statusText.textContent = "BETTER CR";
+}
+
+function setProgress(e) {
+    const width = e.currentTarget.clientWidth;
+    const clickX = e.offsetX;
+    const duration = audio.duration;
+    audio.currentTime = (clickX / width) * duration;
+}
+
+audio.addEventListener("timeupdate", () => {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = percent + "%";
+});
+
+audio.addEventListener("ended", nextSong);
+
+// Create playlist buttons dynamically
+songs.forEach((song, index) => {
+    const btn = document.createElement("button");
+    btn.classList.add("song-button");
+    btn.textContent = song.title;
+    btn.onclick = () => {
+        currentSong = index;
+        loadSong(currentSong);
+        audio.play();
+        statusText.textContent = "BETTER CR";
+    };
+    playlistContainer.appendChild(btn);
+});
+
+// Initialize
+loadSong(currentSong);
+</script>
+
+</body>
+</html>
