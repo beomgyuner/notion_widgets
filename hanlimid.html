@@ -7,18 +7,18 @@
 
 <style>
 body {
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    height: 100vh;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
+    height: 100vh;
+    font-family: "Noto Serif KR", serif;
 }
 
 .card-container {
     perspective: 1200px;
-    width: 350px;
-    height: 220px;
+    width: 500px;
+    height: 300px;
 }
 
 .id-card {
@@ -26,7 +26,7 @@ body {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.8s;
+    transition: transform 0.8s ease;
     cursor: pointer;
 }
 
@@ -38,45 +38,40 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 15px;
     backface-visibility: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    overflow: hidden;
+    border: 1px solid #000;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* FRONT */
+/* FRONT SIDE */
 .front {
-    background: white;
-    padding: 15px;
-    box-sizing: border-box;
+    background: #fff;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 10px;
-}
-
-.school-name {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
-    color: #d62828;
+    border-bottom: 1px solid #000;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
 }
 
-.school-sub {
+.subtext {
     font-size: 13px;
-    color: #444;
+    margin-bottom: 15px;
 }
 
 .content {
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
 .photo {
-    width: 90px;
-    height: 110px;
-    border-radius: 10px;
-    background: #ddd;
+    width: 120px;
+    height: 150px;
+    border: 1px solid #000;
     overflow: hidden;
 }
 
@@ -88,44 +83,58 @@ body {
 
 .info {
     flex: 1;
+    font-size: 15px;
+}
+
+.row {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+}
+
+.issue {
+    margin-top: 20px;
     font-size: 13px;
 }
 
-.info p {
-    margin: 6px 0;
-}
-
-.label {
+.school-large {
+    text-align: center;
+    font-size: 22px;
     font-weight: bold;
-    color: #333;
+    margin-top: 15px;
 }
 
-/* BACK */
+/* Red Stamp Effect */
+.stamp {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: red;
+    font-weight: bold;
+    border: 2px solid red;
+    padding: 8px;
+    transform: rotate(-10deg);
+    font-size: 14px;
+}
+
+/* BACK SIDE */
 .back {
-    background: #111;
-    color: white;
+    background: white;
     transform: rotateY(180deg);
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
 .back img {
-    width: 100px;
-    margin-bottom: 15px;
-}
-
-.back p {
-    font-size: 12px;
-    opacity: 0.8;
+    width: 180px;
 }
 
 /* Responsive */
-@media(max-width: 400px){
+@media(max-width: 600px){
     .card-container {
-        width: 90%;
-        height: 200px;
+        width: 95%;
+        height: auto;
     }
 }
 </style>
@@ -133,38 +142,52 @@ body {
 <body>
 
 <div class="card-container">
-    <div class="id-card" onclick="this.classList.toggle('flipped')">
+<div class="id-card" onclick="this.classList.toggle('flipped')">
 
-        <!-- FRONT -->
-        <div class="card-face front">
-            <div class="header">
-                <div class="school-name">Hanlim Arts School</div>
-                <div class="school-sub">한림연예예술고등학교</div>
+    <!-- FRONT -->
+    <div class="card-face front">
+        <div class="header">
+            Hanlim Arts School 학생증
+        </div>
+
+        <div class="subtext">
+            This certifies that the person below is a registered student of Hanlim Arts School.
+        </div>
+
+        <div class="content">
+            <div class="photo">
+                <img src="student-photo.jpg" alt="Student Photo">
             </div>
 
-            <div class="content">
-                <div class="photo">
-                    <!-- Replace with student image -->
-                    <img src="student-photo.jpg" alt="Student Photo">
-                </div>
-
-                <div class="info">
-                    <p><span class="label">Full Name:</span> Lee Evan</p>
-                    <p><span class="label">Date of Birth:</span> 2007/06/17</p>
-                    <p><span class="label">Department:</span> Practical Dance</p>
-                    <p><span class="label">Year Level:</span> Grade 2</p>
-                </div>
+            <div class="info">
+                <div class="row"><strong>Full Name:</strong> Lee Evan</div>
+                <div class="row"><strong>Date of Birth:</strong> 2007 / 06 / 17</div>
+                <div class="row"><strong>Department:</strong> Practical Dance</div>
+                <div class="row"><strong>Year Level:</strong> Grade 2</div>
             </div>
         </div>
 
-        <!-- BACK -->
-        <div class="card-face back">
-            <!-- Replace with your logo PNG -->
-            <img src="school-logo.png" alt="School Logo">
-            <p>Official Student Identification Card</p>
+        <div class="issue">
+            Issued: 2026 / 03 / 01 <br>
+            Principal Signature: ___________________
         </div>
 
+        <div class="school-large">
+            한림연예예술고등학교
+        </div>
+
+        <div class="stamp">
+            OFFICIAL SEAL
+        </div>
     </div>
+
+    <!-- BACK -->
+    <div class="card-face back">
+        <!-- Replace with your logo PNG -->
+        <img src="school-logo.png" alt="School Logo">
+    </div>
+
+</div>
 </div>
 
 </body>
