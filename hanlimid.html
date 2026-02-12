@@ -17,7 +17,7 @@ body {
 
 .card-container {
     perspective: 1200px;
-    width: 500px;
+    width: 520px;
     height: 300px;
 }
 
@@ -40,15 +40,13 @@ body {
     height: 100%;
     backface-visibility: hidden;
     border: 1px solid #000;
-    padding: 20px;
+    border-radius: 18px; /* Rounded edges */
+    padding: 22px;
     box-sizing: border-box;
-}
-
-/* FRONT SIDE */
-.front {
     background: #fff;
 }
 
+/* FRONT */
 .header {
     text-align: center;
     font-size: 22px;
@@ -86,40 +84,53 @@ body {
     font-size: 15px;
 }
 
+/* Justified rows */
 .row {
-    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between; /* pushes text to far right */
     border-bottom: 1px solid #ccc;
-    padding-bottom: 4px;
+    padding: 6px 0;
 }
 
-.issue {
-    margin-top: 20px;
+.label {
+    font-weight: bold;
+}
+
+.value {
+    text-align: right;
+}
+
+/* Issued line inside card */
+.issued {
+    margin-top: 15px;
     font-size: 13px;
+    border-top: 1px solid #000;
+    padding-top: 8px;
 }
 
+/* School name bottom */
 .school-large {
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-/* Red Stamp Effect */
+/* Stamp */
 .stamp {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    right: 25px;
     color: red;
     font-weight: bold;
     border: 2px solid red;
-    padding: 8px;
-    transform: rotate(-10deg);
-    font-size: 14px;
+    padding: 6px 10px;
+    transform: rotate(-8deg);
+    font-size: 13px;
 }
 
-/* BACK SIDE */
+/* BACK */
 .back {
-    background: white;
     transform: rotateY(180deg);
     display: flex;
     justify-content: center;
@@ -160,16 +171,27 @@ body {
             </div>
 
             <div class="info">
-                <div class="row"><strong>Full Name:</strong> Lee Evan</div>
-                <div class="row"><strong>Date of Birth:</strong> 2007 / 06 / 17</div>
-                <div class="row"><strong>Department:</strong> Practical Dance</div>
-                <div class="row"><strong>Year Level:</strong> Grade 2</div>
+                <div class="row">
+                    <span class="label">Full Name</span>
+                    <span class="value">Lee Evan</span>
+                </div>
+                <div class="row">
+                    <span class="label">Date of Birth</span>
+                    <span class="value">2007 / 06 / 17</span>
+                </div>
+                <div class="row">
+                    <span class="label">Department</span>
+                    <span class="value">Practical Dance</span>
+                </div>
+                <div class="row">
+                    <span class="label">Year Level</span>
+                    <span class="value">Grade 2</span>
+                </div>
             </div>
         </div>
 
-        <div class="issue">
-            Issued: 2026 / 03 / 01 <br>
-            Principal Signature: ___________________
+        <div class="issued">
+            Issued: 2026 / 03 / 01
         </div>
 
         <div class="school-large">
@@ -177,13 +199,12 @@ body {
         </div>
 
         <div class="stamp">
-            OFFICIAL SEAL
+            OFFICIAL
         </div>
     </div>
 
     <!-- BACK -->
     <div class="card-face back">
-        <!-- Replace with your logo PNG -->
         <img src="school-logo.png" alt="School Logo">
     </div>
 
