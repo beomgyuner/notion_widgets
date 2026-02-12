@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanlim Arts School ID</title>
+
+<style>
+body {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.card-container {
+    perspective: 1200px;
+    width: 350px;
+    height: 220px;
+}
+
+.id-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    cursor: pointer;
+}
+
+.id-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+
+/* FRONT */
+.front {
+    background: white;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.school-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d62828;
+}
+
+.school-sub {
+    font-size: 13px;
+    color: #444;
+}
+
+.content {
+    display: flex;
+    gap: 15px;
+}
+
+.photo {
+    width: 90px;
+    height: 110px;
+    border-radius: 10px;
+    background: #ddd;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
+    flex: 1;
+    font-size: 13px;
+}
+
+.info p {
+    margin: 6px 0;
+}
+
+.label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* BACK */
+.back {
+    background: #111;
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.back img {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.back p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media(max-width: 400px){
+    .card-container {
+        width: 90%;
+        height: 200px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="card-container">
+    <div class="id-card" onclick="this.classList.toggle('flipped')">
+
+        <!-- FRONT -->
+        <div class="card-face front">
+            <div class="header">
+                <div class="school-name">Hanlim Arts School</div>
+                <div class="school-sub">한림연예예술고등학교</div>
+            </div>
+
+            <div class="content">
+                <div class="photo">
+                    <!-- Replace with student image -->
+                    <img src="student-photo.jpg" alt="Student Photo">
+                </div>
+
+                <div class="info">
+                    <p><span class="label">Full Name:</span> Lee Evan</p>
+                    <p><span class="label">Date of Birth:</span> 2007/06/17</p>
+                    <p><span class="label">Department:</span> Practical Dance</p>
+                    <p><span class="label">Year Level:</span> Grade 2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="card-face back">
+            <!-- Replace with your logo PNG -->
+            <img src="school-logo.png" alt="School Logo">
+            <p>Official Student Identification Card</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
