@@ -5,134 +5,159 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CORTIS Community ID</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-
 <style>
-
-/* Page */
 body{
     margin:0;
-    height:100vh;
+    background:#ffffff;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#ffffff;
+    height:100vh;
     font-family: Arial, Helvetica, sans-serif;
-    overflow:hidden; /* prevents flip shifting */
 }
 
-/* Flip container */
+/* FLIP CONTAINER */
 .card-container{
+    perspective:1200px;
     width:480px;
     height:280px;
-    perspective:1200px;
 }
 
-/* Card */
 .id-card{
     width:100%;
     height:100%;
     position:relative;
     transform-style:preserve-3d;
     transition:transform .8s ease;
+    cursor:pointer;
 }
 
 .id-card.flipped{
     transform:rotateY(180deg);
 }
 
-/* Faces */
 .card-face{
     position:absolute;
     width:100%;
     height:100%;
     backface-visibility:hidden;
-    border-radius:25px;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
-    background:#ffffff;
-    padding:25px;
-    box-sizing:border-box;
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
     overflow:hidden;
 }
 
 /* FRONT */
 .front{
+    background:#f8f8f8;
+    padding:20px;
+    box-sizing:border-box;
     position:relative;
 }
 
-/* Header */
+/* Header aligned right */
 .header{
-    text-align:right;
     font-weight:bold;
-    font-size:18px;
     letter-spacing:1px;
-    position:relative;
-    z-index:2;
+    font-size:18px;
+    text-align:right;
 }
 
-/* Big cursive CORTIS (ABSOLUTE so it doesn't move layout) */
+/* Big faded background text */
 .big-bg{
     position:absolute;
-    top:55px;
-    right:25px;
-    font-family:'Great Vibes', cursive;
-    font-size:120px;
-    color:rgba(255,0,0,0.20);
-    line-height:1;
-    white-space:nowrap;
+    top:70px;
+    right:30px;
+    font-size:110px;
+    font-weight:900;
+    color:red;
     pointer-events:none;
+    user-select:none;
+
+    /* Spray paint effect */
+    filter: blur(3px);
+    opacity:0.6;
+    letter-spacing:5px;
+
+    /* soft spray edges */
+    text-shadow:
+        0 0 8px rgba(255,0,0,0.8),
+        0 0 15px rgba(255,0,0,0.6),
+        0 0 25px rgba(255,0,0,0.4);
 }
 
 /* Layout */
 .content{
-    position:absolute;
-    bottom:25px;
-    left:25px;
-    right:25px;
     display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
+    gap:25px;
+    height:100%;
 }
 
-/* Photo */
+/* Photo section */
+.photo-section{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
 .photo{
     width:130px;
+    height:170px;
+    border-radius:15px;
+    overflow:hidden;
 }
 
 .photo img{
-    width:130px;
-    height:170px;
+    width:100%;
+    height:100%;
     object-fit:cover;
-    border-radius:15px;
 }
 
+/* filename under photo */
 .filename{
-    text-align:center;
-    font-size:12px;
-    margin-top:6px;
+    margin-top:8px;
+    font-size:13px;
+    color:#333;
 }
 
-/* Info lower right */
+/* Info section lower right */
 .info{
-    text-align:right;
+    position:absolute;
+    bottom:25px;
+    right:30px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 20px;
 }
 
+/* Green Label */
 .label{
     display:inline-block;
     background:#1db954;
+    color:#000;
     font-weight:bold;
     font-size:12px;
-    padding:4px 8px;
-    border-radius:5px;
+    padding:3px 8px;
+    border-radius:4px;
     margin-bottom:3px;
 }
 
+/* Value */
 .value{
-    margin-bottom:10px;
+    font-size:14px;
+}
+
+/* Star */
+.star{
+    position:absolute;
+    bottom:20px;
+    left:25px;
+    font-size:26px;
+    color:#ff4da6;
 }
 
 /* BACK */
 .back{
+    background:#f8f8f8;
     transform:rotateY(180deg);
     display:flex;
     justify-content:center;
@@ -143,6 +168,13 @@ body{
     width:180px;
 }
 
+/* Responsive */
+@media(max-width:520px){
+    .card-container{
+        width:95%;
+        height:auto;
+    }
+}
 </style>
 </head>
 <body>
@@ -159,34 +191,42 @@ body{
 
         <div class="content">
 
-            <div class="photo">
-                <img src="https://file.garden/aXTkw7hiK3vn4ais/KiiiKiii%20%20TELECA%20COLLECTION%20CARD%202025%20K-POP%20ROOKIE%20Concept%20Photo.png" alt="Photo">
-                <div class="filename">SUVI_IRINA_VALENCIA.jpg</div>
-            </div>
-
-            <div class="info">
-                <div>
-                    <div class="label">NAME</div>
-                    <div class="value">SUVI IRINA VALENCIA</div>
+            <div class="photo-section">
+                <div class="photo">
+                    <img src="https://file.garden/aXTkw7hiK3vn4ais/KiiiKiii%20%20TELECA%20COLLECTION%20CARD%202025%20K-POP%20ROOKIE%20Concept%20Photo.png" alt="Photo">
                 </div>
-
-                <div>
-                    <div class="label">GROUP</div>
-                    <div class="value">CORTIS</div>
-                </div>
-
-                <div>
-                    <div class="label">D.O.B</div>
-                    <div class="value">2008.07.03</div>
-                </div>
-
-                <div>
-                    <div class="label">CODE</div>
-                    <div class="value">0703</div>
-                </div>
+                <div class="filename">SUVI_VALENCIA.jpg</div>
             </div>
 
         </div>
+
+        <!-- LOWER RIGHT INFO -->
+        <div class="info">
+
+            <div>
+                <div class="label">NAME</div>
+                <div class="value">SUVI IRINA VALENCIA</div>
+            </div>
+
+            <div>
+                <div class="label">GROUP</div>
+                <div class="value">CORTIS</div>
+            </div>
+
+            <div>
+                <div class="label">D.O.B</div>
+                <div class="value">2008.07.03</div>
+            </div>
+
+            <div>
+                <div class="label">CODE</div>
+                <div class="value">0307</div>
+            </div>
+
+        </div>
+
+        <div class="star">★</div>
+
     </div>
 
     <!-- BACK -->
