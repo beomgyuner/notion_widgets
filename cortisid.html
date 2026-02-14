@@ -21,6 +21,7 @@ body{
     perspective:1200px;
     width:480px;
     height:280px;
+    position:relative;
 }
 
 .id-card{
@@ -48,7 +49,7 @@ body{
 
 /* FRONT */
 .front{
-    background:#f8f8f8;
+    background:#ffffff;
     padding:20px;
     box-sizing:border-box;
     position:relative;
@@ -60,6 +61,8 @@ body{
     letter-spacing:1px;
     font-size:18px;
     text-align:right;
+    position: relative;
+    z-index: 2;
 }
 
 /* Big faded background text */
@@ -72,6 +75,7 @@ body{
     color:red;
     pointer-events:none;
     user-select:none;
+    z-index: 0;
 
     /* Spray paint effect */
     filter: blur(3px);
@@ -97,6 +101,8 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
+    position: relative;
+    z-index: 2;
 }
 
 .photo{
@@ -126,7 +132,8 @@ body{
     right:30px;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px 20px;
+    gap:12px 25px;
+    z-index: 2;
 }
 
 /* Green Label */
@@ -148,11 +155,12 @@ body{
 
 /* Star */
 .star{
-    position:absolute;
+    position:relative;
     bottom:20px;
     left:25px;
     font-size:26px;
     color:#ff4da6;
+    z-index: 2;
 }
 
 /* BACK */
@@ -172,7 +180,6 @@ body{
 @media(max-width:520px){
     .card-container{
         width:95%;
-        height:auto;
     }
 }
 </style>
