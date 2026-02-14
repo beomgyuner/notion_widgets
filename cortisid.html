@@ -5,135 +5,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CORTIS Community ID</title>
 
-<!-- Cursive Font -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
 <style>
+
+/* Page */
 body{
     margin:0;
-    background:#ffffff;
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    background:#ffffff;
     font-family: Arial, Helvetica, sans-serif;
+    overflow:hidden; /* prevents flip shifting */
 }
 
+/* Flip container */
 .card-container{
-    perspective:1200px;
     width:480px;
     height:280px;
+    perspective:1200px;
 }
 
+/* Card */
 .id-card{
     width:100%;
     height:100%;
     position:relative;
     transform-style:preserve-3d;
     transition:transform .8s ease;
-    cursor:pointer;
 }
 
 .id-card.flipped{
     transform:rotateY(180deg);
 }
 
+/* Faces */
 .card-face{
     position:absolute;
     width:100%;
     height:100%;
     backface-visibility:hidden;
-    border-radius:20px;
-    box-shadow:0 15px 30px rgba(0,0,0,.15);
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+    background:#ffffff;
+    padding:25px;
+    box-sizing:border-box;
     overflow:hidden;
 }
 
 /* FRONT */
 .front{
-    background:#f8f8f8;
-    padding:20px;
-    box-sizing:border-box;
     position:relative;
 }
 
-/* Header aligned right */
+/* Header */
 .header{
-    font-weight:bold;
-    letter-spacing:1px;
-    font-size:18px;
     text-align:right;
+    font-weight:bold;
+    font-size:18px;
+    letter-spacing:1px;
+    position:relative;
+    z-index:2;
 }
 
-/* Big cursive CORTIS */
+/* Big cursive CORTIS (ABSOLUTE so it doesn't move layout) */
 .big-bg{
-    font-family: 'Great Vibes', cursive;
-    font-size:95px;
-    color:rgba(255,0,0,0.25);
-    text-align:right;
-    margin-top:5px;
-    margin-bottom:10px;
+    position:absolute;
+    top:55px;
+    right:25px;
+    font-family:'Great Vibes', cursive;
+    font-size:120px;
+    color:rgba(255,0,0,0.20);
+    line-height:1;
+    white-space:nowrap;
+    pointer-events:none;
 }
 
 /* Layout */
 .content{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    right:25px;
     display:flex;
-    gap:20px;
+    justify-content:space-between;
+    align-items:flex-end;
 }
 
 /* Photo */
 .photo{
     width:130px;
-    height:170px;
-    border-radius:15px;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
 }
 
 .photo img{
-    width:100%;
-    height:100%;
+    width:130px;
+    height:170px;
     object-fit:cover;
+    border-radius:15px;
 }
 
-/* filename under photo */
 .filename{
+    text-align:center;
     font-size:12px;
     margin-top:6px;
-    text-align:center;
 }
 
 /* Info lower right */
 .info{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    align-items:flex-end;
-    gap:10px;
+    text-align:right;
 }
 
-/* Green Label */
 .label{
     display:inline-block;
     background:#1db954;
-    color:#000;
     font-weight:bold;
     font-size:12px;
-    padding:3px 8px;
-    border-radius:4px;
+    padding:4px 8px;
+    border-radius:5px;
     margin-bottom:3px;
 }
 
-/* Value */
 .value{
-    font-size:14px;
-    text-align:right;
+    margin-bottom:10px;
 }
 
 /* BACK */
 .back{
-    background:#f8f8f8;
     transform:rotateY(180deg);
     display:flex;
     justify-content:center;
@@ -143,6 +142,7 @@ body{
 .back img{
     width:180px;
 }
+
 </style>
 </head>
 <body>
@@ -159,15 +159,12 @@ body{
 
         <div class="content">
 
-            <!-- LEFT PHOTO -->
             <div class="photo">
-                <img src="https://file.garden/aXTkw7hiK3vn4ais/KiiiKiii%20%20TELECA%20COLLECTION%20CARD%202025%20K-POP%20ROOKIE%20Concept%20Photo.jpg" alt="Photo">
-                <div class="filename">SUVI_VALENCIA.jpg</div>
+                <img src="https://file.garden/aXTkw7hiK3vn4ais/KiiiKiii%20%20TELECA%20COLLECTION%20CARD%202025%20K-POP%20ROOKIE%20Concept%20Photo.png" alt="Photo">
+                <div class="filename">SUVI_IRINA_VALENCIA.jpg</div>
             </div>
 
-            <!-- LOWER RIGHT INFO -->
             <div class="info">
-
                 <div>
                     <div class="label">NAME</div>
                     <div class="value">SUVI IRINA VALENCIA</div>
@@ -187,10 +184,9 @@ body{
                     <div class="label">CODE</div>
                     <div class="value">0703</div>
                 </div>
-
             </div>
-        </div>
 
+        </div>
     </div>
 
     <!-- BACK -->
