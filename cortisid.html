@@ -64,20 +64,23 @@ body{
     z-index:3;
 }
 
-.spray-wrapper{
+.big-bg{
     position:absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%,-50%);
-    pointer-events:none;
-}
-
-.spray{
-    position:absolute;
-    font-size:160px;
+    transform:translate(-50%, -50%);
+    font-size:120px;
     font-weight:900;
-    font-family:serif;
-    white-space:nowrap;
+    color:red;
+    opacity:.65;
+    filter:blur(6px);
+    letter-spacing:8px;
+    z-index:1;
+    pointer-events:none;
+    text-shadow:
+        0 0 20px rgba(255,0,0,.9),
+        0 0 40px rgba(255,0,0,.7),
+        0 0 70px rgba(255,0,0,.4);
 }
 
 /* Glow / overspray */
@@ -127,7 +130,7 @@ body{
     column-gap:65px;   /* space between columns */
     position:absolute;
     left:170px;
-    top:120px;
+    top:110px;
 }
 
 /* Green Label */
@@ -136,7 +139,7 @@ body{
     background:#1db954;
     color:#000;
     font-weight:bold;
-    font-size:14px;
+    font-size:12px;
     padding:3px 8px;
     border-radius:0px;
     margin-bottom:3px;
@@ -188,10 +191,8 @@ body{
     <div class="card-face front">
         <div class="header">CORTIS COMMUNITY ID</div>
 
-<div class="spray-wrapper">
-  <div class="spray glow">CORTIS</div>
-  <div class="spray main">CORTIS</div>
-</div>
+        <div class="big-bg">CORTIS</div>
+
 
         <div class="content">
 
