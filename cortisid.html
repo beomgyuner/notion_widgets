@@ -93,10 +93,9 @@ body{
 
 /* Photo */
 .photo{
-    width:130px;
-    height:190px;
-    border-radius:15px;
-    overflow:hidden;
+  position: absolute;
+  top: 50px; 
+  left: 20px;
 }
 
 .photo img{
@@ -107,14 +106,12 @@ body{
 
 /* Info Section */
 .info{
-    flex:1;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px 20px;
-    align-content:start;
-    position:absolute;
-    right:0px;
-    bottom:0px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 /* Green Label */
@@ -136,6 +133,8 @@ body{
 }
     /* filename */
 .filename{
+    position: relative;
+    top: -20px; /* Adjust as needed */
     margin-top:8px;
     font-size:14px;
     color:#333;
