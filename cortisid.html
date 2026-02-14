@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CORTIS Community ID</title>
+<title>Cortis ID</title>
 
 <style>
 body{
@@ -16,12 +16,11 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* FLIP CONTAINER */
+/* ===== FLIP CONTAINER ===== */
 .card-container{
-    perspective:1200px;
     width:480px;
     height:280px;
-    position:relative;
+    perspective:1200px;
 }
 
 .id-card{
@@ -30,7 +29,6 @@ body{
     position:relative;
     transform-style:preserve-3d;
     transition:transform .8s ease;
-    cursor:pointer;
 }
 
 .id-card.flipped{
@@ -41,74 +39,63 @@ body{
     position:absolute;
     width:100%;
     height:100%;
+    border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
     backface-visibility:hidden;
-    border-radius:20px;
-    box-shadow:0 15px 30px rgba(0,0,0,.15);
     overflow:hidden;
 }
 
-/* FRONT */
+/* ===== FRONT ===== */
 .front{
     background:#ffffff;
-    padding:20px;
-    box-sizing:border-box;
     position:relative;
+    padding:25px;
+    box-sizing:border-box;
 }
 
-/* Header aligned right */
+/* Header right aligned */
 .header{
-    font-weight:bold;
-    letter-spacing:1px;
-    font-size:18px;
     text-align:right;
-    position: relative;
-    z-index: 2;
+    font-weight:bold;
+    font-size:18px;
+    letter-spacing:1px;
+    position:relative;
+    z-index:3;
 }
 
-/* Big faded background text */
+/* Centered spray background text */
 .big-bg{
     position:absolute;
-    top:70px;
-    right:30px;
-    font-size:110px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-size:120px;
     font-weight:900;
     color:red;
+    opacity:.65;
+    filter:blur(6px);
+    letter-spacing:8px;
+    z-index:1;
     pointer-events:none;
-    user-select:none;
-    z-index: 0;
-
-    /* Spray paint effect */
-    filter: blur(3px);
-    opacity:0.6;
-    letter-spacing:5px;
-
-    /* soft spray edges */
     text-shadow:
-        0 0 8px rgba(255,0,0,0.8),
-        0 0 15px rgba(255,0,0,0.6),
-        0 0 25px rgba(255,0,0,0.4);
+        0 0 20px rgba(255,0,0,.9),
+        0 0 40px rgba(255,0,0,.7),
+        0 0 70px rgba(255,0,0,.4);
 }
 
-/* Layout */
-.content{
-    display:flex;
-    gap:25px;
-    height:100%;
-}
-
-/* Photo section */
+/* Photo area */
 .photo-section{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    position: relative;
-    z-index: 2;
+    position:absolute;
+    top:60px;
+    left:30px;
+    z-index:3;
+    text-align:left;
 }
 
 .photo{
     width:130px;
     height:170px;
-    border-radius:15px;
+    border-radius:18px;
     overflow:hidden;
 }
 
@@ -118,54 +105,49 @@ body{
     object-fit:cover;
 }
 
-/* filename under photo */
+/* filename */
 .filename{
     margin-top:8px;
-    font-size:13px;
+    font-size:14px;
     color:#333;
 }
 
-/* Info section lower right */
-.info{
-    position:absolute;
-    bottom:25px;
-    right:30px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px 25px;
-    z-index: 2;
+/* pink star under filename */
+.star{
+    margin-top:6px;
+    font-size:22px;
+    color:#ff4da6;
 }
 
-/* Green Label */
+/* Info bottom right */
+.info{
+    position:absolute;
+    bottom:30px;
+    right:35px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px 30px;
+    z-index:3;
+}
+
+/* green labels */
 .label{
     display:inline-block;
     background:#1db954;
-    color:#000;
-    font-weight:bold;
+    padding:3px 10px;
+    border-radius:6px;
     font-size:12px;
-    padding:3px 8px;
-    border-radius:4px;
-    margin-bottom:3px;
+    font-weight:bold;
+    margin-bottom:4px;
 }
 
-/* Value */
 .value{
     font-size:14px;
 }
 
-/* Star */
-.star{
-    position:relative;
-    bottom:20px;
-    left:25px;
-    font-size:26px;
-    color:#ff4da6;
-    z-index: 2;
-}
-
-/* BACK */
+/* ===== BACK ===== */
 .back{
-    background:#f8f8f8;
+    background:#ffffff;
     transform:rotateY(180deg);
     display:flex;
     justify-content:center;
@@ -174,13 +156,6 @@ body{
 
 .back img{
     width:180px;
-}
-
-/* Responsive */
-@media(max-width:520px){
-    .card-container{
-        width:95%;
-    }
 }
 </style>
 </head>
@@ -196,18 +171,16 @@ body{
 
         <div class="big-bg">CORTIS</div>
 
-        <div class="content">
-
-            <div class="photo-section">
-                <div class="photo">
-                    <img src="https://file.garden/aXTkw7hiK3vn4ais/KiiiKiii%20%20TELECA%20COLLECTION%20CARD%202025%20K-POP%20ROOKIE%20Concept%20Photo.png" alt="Photo">
-                </div>
-                <div class="filename">SUVI_VALENCIA.jpg</div>
+        <!-- Photo + filename -->
+        <div class="photo-section">
+            <div class="photo">
+                <img src="https://file.garden/aXTkw7hiK3vn4ais/KiiiKiii%20%20TELECA%20COLLECTION%20CARD%202025%20K-POP%20ROOKIE%20Concept%20Photo.png" alt="Photo">
             </div>
-
+            <div class="filename">SUVI_VALENCIA.jpg</div>
+            <div class="star">★</div>
         </div>
 
-        <!-- LOWER RIGHT INFO -->
+        <!-- Bottom Right Info -->
         <div class="info">
 
             <div>
@@ -231,8 +204,6 @@ body{
             </div>
 
         </div>
-
-        <div class="star">★</div>
 
     </div>
 
