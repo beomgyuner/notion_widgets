@@ -8,212 +8,182 @@
 <style>
 body{
     margin:0;
-    background:#ffffff;
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    background:#d9d9d9;
+    font-family:Arial, sans-serif;
 }
 
-/* ===== FLIP CONTAINER ===== */
-.card-container{
-    width:480px;
-    height:280px;
-    perspective:1200px;
+/* FLIP WRAPPER */
+.card-wrapper{
+    perspective:1000px;
 }
 
-.id-card{
-    width:100%;
-    height:100%;
+/* CARD */
+.card{
+    width:750px;
+    height:420px;
     position:relative;
+    border-radius:30px;
+    background:#efefef;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+    overflow:hidden;
     transform-style:preserve-3d;
-    transition:transform .8s ease;
+    transition:transform 0.8s;
 }
 
-.id-card.flipped{
+.card.flip{
     transform:rotateY(180deg);
 }
 
-.card-face{
+/* FRONT & BACK */
+.side{
     position:absolute;
     width:100%;
     height:100%;
-    border-radius:25px;
-    box-shadow:0 20px 40px rgba(0,0,0,.15);
     backface-visibility:hidden;
-    overflow:hidden;
 }
 
-/* ===== FRONT ===== */
-.front{
-    background:#ffffff;
-    position:relative;
-    padding:25px;
-    box-sizing:border-box;
+.back{
+    transform:rotateY(180deg);
+    background:#efefef;
 }
 
-/* Header right aligned */
+/* HEADER */
 .header{
-    text-align:right;
+    position:absolute;
+    top:30px;
+    right:40px;
+    font-size:24px;
     font-weight:bold;
-    font-size:18px;
-    letter-spacing:1px;
-    position:relative;
-    z-index:3;
+    letter-spacing:2px;
 }
 
-/* Centered spray background text */
-.big-bg{
+/* CENTERED BLURRED CORTIS */
+.bg-text{
     position:absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);
-    font-size:120px;
+    transform:translate(-50%,-50%);
+    font-size:160px;
     font-weight:900;
     color:red;
-    opacity:.65;
-    filter:blur(6px);
-    letter-spacing:8px;
-    z-index:1;
+    opacity:0.6;
+    filter:blur(25px);
     pointer-events:none;
-    text-shadow:
-        0 0 20px rgba(255,0,0,.9),
-        0 0 40px rgba(255,0,0,.7),
-        0 0 70px rgba(255,0,0,.4);
 }
 
-/* Photo area */
-.photo-section{
+/* PROFILE IMAGE */
+.profile{
     position:absolute;
-    top:60px;
-    left:30px;
-    z-index:3;
-    text-align:left;
-}
-
-.photo{
-    width:130px;
-    height:170px;
-    border-radius:18px;
-    overflow:hidden;
-}
-
-.photo img{
-    width:100%;
-    height:100%;
+    top:100px;
+    left:80px;
+    width:200px;
+    height:250px;
+    border-radius:25px;
     object-fit:cover;
 }
 
-/* filename */
+/* FILE NAME */
 .filename{
-    margin-top:8px;
-    font-size:14px;
-    color:#333;
+    position:absolute;
+    left:80px;
+    bottom:60px;
+    font-size:18px;
+    color:#444;
 }
 
-/* pink star under filename */
+/* PINK STAR */
 .star{
-    margin-top:6px;
+    position:absolute;
+    left:80px;
+    bottom:35px;
+    color:#ff3fa4;
     font-size:22px;
-    color:#ff4da6;
 }
 
-/* Info bottom right */
+/* INFO SECTION (LOCKED LOWER RIGHT) */
 .info{
     position:absolute;
-    bottom:30px;
-    right:35px;
+    right:80px;
+    bottom:80px;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:14px 30px;
-    z-index:3;
+    gap:25px 60px;
 }
 
-/* green labels */
 .label{
-    display:inline-block;
-    background:#1db954;
-    padding:3px 10px;
-    border-radius:6px;
-    font-size:12px;
+    background:#20c35b;
+    padding:5px 12px;
+    border-radius:8px;
+    font-size:14px;
     font-weight:bold;
-    margin-bottom:4px;
+    display:inline-block;
+    margin-bottom:5px;
 }
 
 .value{
-    font-size:14px;
+    font-size:18px;
 }
 
-/* ===== BACK ===== */
-.back{
-    background:#ffffff;
-    transform:rotateY(180deg);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.back img{
-    width:180px;
-}
 </style>
 </head>
 <body>
 
-<div class="card-container">
-<div class="id-card" onclick="this.classList.toggle('flipped')">
+<div class="card-wrapper">
+    <div class="card" id="card">
 
-    <!-- FRONT -->
-    <div class="card-face front">
+        <!-- FRONT -->
+        <div class="side front">
 
-        <div class="header">CORTIS COMMUNITY ID</div>
+            <div class="header">CORTIS COMMUNITY ID</div>
 
-        <div class="big-bg">CORTIS</div>
+            <div class="bg-text">CORTIS</div>
 
-        <!-- Photo + filename -->
-        <div class="photo-section">
-            <div class="photo">
-                <img src="https://file.garden/aXTkw7hiK3vn4ais/KiiiKiii%20%20TELECA%20COLLECTION%20CARD%202025%20K-POP%20ROOKIE%20Concept%20Photo.png" alt="Photo">
-            </div>
+            <img src="https://file.garden/aXTkw7hiK3vn4ais/KiiiKiii%20%20TELECA%20COLLECTION%20CARD%202025%20K-POP%20ROOKIE%20Concept%20Photo.png" class="profile">
+
             <div class="filename">SUVI_VALENCIA.jpg</div>
             <div class="star">★</div>
+
+            <div class="info">
+                <div>
+                    <div class="label">NAME</div>
+                    <div class="value">SUVI IRINA VALENCIA</div>
+                </div>
+
+                <div>
+                    <div class="label">GROUP</div>
+                    <div class="value">CORTIS</div>
+                </div>
+
+                <div>
+                    <div class="label">D.O.B</div>
+                    <div class="value">2008.07.03</div>
+                </div>
+
+                <div>
+                    <div class="label">CODE</div>
+                    <div class="value">0307</div>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Bottom Right Info -->
-        <div class="info">
-
-            <div>
-                <div class="label">NAME</div>
-                <div class="value">SUVI IRINA VALENCIA</div>
-            </div>
-
-            <div>
-                <div class="label">GROUP</div>
-                <div class="value">CORTIS</div>
-            </div>
-
-            <div>
-                <div class="label">D.O.B</div>
-                <div class="value">2008.07.03</div>
-            </div>
-
-            <div>
-                <div class="label">CODE</div>
-                <div class="value">0307</div>
-            </div>
-
+        <!-- BACK -->
+        <div class="side back">
+            <div class="header">BACK SIDE</div>
         </div>
 
     </div>
-
-    <!-- BACK -->
-    <div class="card-face back">
-        <img src="https://file.garden/aXTkw7hiK3vn4ais/Cortis%20logo.jpg" alt="Logo">
-    </div>
-
 </div>
-</div>
+
+<script>
+document.getElementById("card").addEventListener("click",function(){
+    this.classList.toggle("flip");
+});
+</script>
 
 </body>
 </html>
