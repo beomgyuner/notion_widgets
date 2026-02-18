@@ -16,7 +16,7 @@
 
 <style>
 body {
-  background: #f8c8d8;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,7 @@ body {
 
 /* Title bar */
 .title-bar {
-  background: linear-gradient(to right, #000080, #1084d0);
+  background: #fc418a;
   color: white;
   padding: 6px 10px;
   font-size: 16px;
@@ -53,16 +53,25 @@ body {
 .close-btn {
   width: 16px;
   height: 16px;
-  background: #d4d0c8;
+  background: #ffe7f0;
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
   border-right: 2px solid #808080;
   border-bottom: 2px solid #808080;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 12px;
+  font-family: 'Pixelify Sans', sans-serif;
+  color: black;
+  cursor: pointer;
 }
 
 /* Content area */
 .content {
-  background: #e9cfd7;
+  background: #ffe7f0;
   padding: 20px 20px; /* reduced vertical padding */
   text-align: center;
   color: #000;
@@ -96,7 +105,7 @@ body {
   font-family: 'DotGothic16', sans-serif;
   font-size: 16px;
   padding: 6px 24px;
-  background: #d4d0c8;
+  background: #ffe7f0;
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
   border-right: 2px solid #808080;
@@ -118,23 +127,23 @@ body {
 <div class="window">
   <div class="title-bar">
     <span>Desktop</span>
-    <div class="close-btn"></div>
+    <div class="close-btn">✕</div>
   </div>
 
   <div class="content">
 
     <!-- Replace with your PNG file -->
-    <img src="warning.png" class="warning-icon" alt="warning">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/pixelated-yellow-triangle-warning-sign-with-exclamation-mark-perfect-caution-alert-danger-symbols_709240-474.png" class="warning-icon" alt="warning">
 
-    <div class="message">I love you.</div>
-    <div class="kaomoji">ヾ(＠＾▽＾＠)ﾉ</div>
+    <div class="message">Talking Voice</div>
+    <div class="kaomoji">Aerith Gainsborough (Briana White)</div>
 
     <button class="ok-btn" onclick="playAudio()">OK</button>
   </div>
 </div>
 
 <audio id="loveAudio">
-  <source src="your-audio.mp3" type="audio/mpeg">
+  <source src="https://file.garden/aXTkw7hiK3vn4ais/ssstik.io_1771426366744.mp3" type="audio/mpeg">
 </audio>
 
 <script>
