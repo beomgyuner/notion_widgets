@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pixel Love Popup</title>
+
+<!-- DotGothic16 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
+<!-- Pixelify Sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  background: #f8c8d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  image-rendering: pixelated;
+}
+
+/* Window */
+.window {
+  width: 520px;
+  background: #e9cfd7;
+  border: 4px solid #d46a92;
+  box-shadow: 0 0 0 4px #ffffff inset;
+}
+
+/* Top bar */
+.title-bar {
+  background: #ff4f93;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+.close-btn {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  background: #ff8fb5;
+}
+
+/* Content */
+.content {
+  padding: 40px 20px;
+  text-align: center;
+  color: #3a2b2f;
+  line-height: 1.8;
+  position: relative;
+  font-family: 'DotGothic16', sans-serif;
+}
+
+/* Warning icon */
+.warning {
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  width: 40px;
+  height: 40px;
+  background: #ff6b81;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: black;
+  font-family: monospace;
+}
+
+/* Text styling */
+.message {
+  font-size: 18px;
+}
+
+.kaomoji {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* OK button */
+.ok-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 16px;
+  background: #f5d0dc;
+  border: 3px solid #b55b7d;
+  box-shadow: 3px 3px 0 #b55b7d;
+  cursor: pointer;
+}
+
+.ok-btn:active {
+  box-shadow: 1px 1px 0 #b55b7d;
+  transform: translate(2px,2px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="window">
+  <div class="title-bar">
+    <span>Desktop</span>
+    <div class="close-btn"></div>
+  </div>
+
+  <div class="content">
+    <div class="warning">!</div>
+
+    <div class="message">I love you.</div>
+    <div class="kaomoji">ヾ(＠＾▽＾＠)ﾉ</div>
+
+    <button class="ok-btn" onclick="playAudio()">OK</button>
+  </div>
+</div>
+
+<audio id="loveAudio">
+  <source src="your-audio.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playAudio() {
+  const audio = document.getElementById("loveAudio");
+  audio.play();
+}
+</script>
+
+</body>
+</html>
