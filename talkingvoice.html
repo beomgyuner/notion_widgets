@@ -84,8 +84,8 @@ body {
   position: absolute;
   left: 20px;
   top: 20px;
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: auto;
   image-rendering: pixelated;
 }
 
@@ -148,7 +148,12 @@ body {
 
 <script>
 function playAudio() {
-  document.getElementById("loveAudio").play();
+  const audio = document.getElementById("loveAudio");
+
+  audio.currentTime = 0;   // restart if already played
+  audio.play().catch(error => {
+    console.log("Audio failed:", error);
+  });
 }
 </script>
 
