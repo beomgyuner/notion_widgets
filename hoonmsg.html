@@ -66,6 +66,19 @@ body {
   transform: scale(1);
 }
 
+#messageImage {
+  display: none;
+  margin-top: 8px;
+
+  width: 100%;
+  aspect-ratio: 3 / 1; /* keeps 1500x500 ratio */
+  object-fit: cover;
+
+  border-radius: 12px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
 /* BOUNCY POP ANIMATION */
 @keyframes bouncePop {
   0%   { transform: scale(0.85); }
@@ -90,7 +103,7 @@ body {
 
 <div class="bubble pop" id="bubble">
   <div id="messageText">Call me in a bit okay?</div>
-  <img id="messageImage" style="display:none; margin-top:8px; max-width:100%; border-radius:12px;">
+  <img id="messageImage">
 </div>
 </div>
 
@@ -98,6 +111,8 @@ body {
 const messages = [
   { text: "Call me in a bit okay?" },
 
+  { text: "who is Flo and why is he texting you about your period" },
+  
   { text: "Do you want lasagna" },
 
   { 
@@ -106,6 +121,15 @@ const messages = [
   },
 
   { text: "It's cold, bring a jacket" },
+
+  { text: "Do you want . a matcha" },
+
+  { 
+    text: "It looks pretty today",
+    image: "https://file.garden/aXTkw7hiK3vn4ais/G1AMXIEWsAAkGrQ.jpg"
+  },
+
+  { text: "who is Cloud Strife" },
 
   { 
     text: "At gym 👍 coming home soon",
