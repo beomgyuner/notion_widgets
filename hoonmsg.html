@@ -6,7 +6,7 @@
 
 <style>
 body {
-  background: #d6d6d6;
+  background: #ffffff;
   font-family: Helvetica, Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -53,7 +53,6 @@ body {
 
 /* MESSAGE BUBBLE */
 .bubble {
-  position: relative;
   background: linear-gradient(#f7f7f7, #dcdcdc);
   padding: 10px 14px;
   border-radius: 18px;
@@ -63,21 +62,19 @@ body {
   font-size: 14px;
   color: #333;
   min-height: 20px;
-  transition: opacity 0.2s ease;
+  transform: scale(1);
 }
 
-/* Bubble Tail */
-.bubble::after {
-  content: "";
-  position: absolute;
-  left: -8px;
-  top: 12px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 8px solid #e4e4e4;
-  filter: drop-shadow(-1px 1px 0 rgba(0,0,0,0.2));
+/* BOUNCY POP ANIMATION */
+@keyframes bouncePop {
+  0%   { transform: scale(0.85); }
+  50%  { transform: scale(1.08); }
+  70%  { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+.pop {
+  animation: bouncePop 0.35s ease;
 }
 </style>
 </head>
@@ -106,17 +103,20 @@ const messages = [
 ];
 
 let index = 0;
+const bubble = document.getElementById("message");
 
 function nextMessage() {
   index++;
   if (index >= messages.length) {
     index = 0;
   }
-  document.getElementById("message").style.opacity = 0;
-  setTimeout(() => {
-    document.getElementById("message").innerText = messages[index];
-    document.getElementById("message").style.opacity = 1;
-  }, 150);
+
+  bubble.textContent = messages[index];
+
+  // Restart animation
+  bubble.classList.remove("pop");
+  void bubble.offsetWidth; // forces reflow
+  bubble.classList.add("pop");
 }
 </script>
 
