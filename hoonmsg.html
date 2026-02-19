@@ -12,6 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* WIDGET CONTAINER */
@@ -87,23 +88,36 @@ body {
     <div class="name">hoonie ૮ •̄⁠.ᴥ ‧•̄ ა ୨୧</div>
   </div>
 
-  <div class="bubble" id="message">
-    Call me in a bit okay?
-  </div>
+<div class="bubble pop" id="bubble">
+  <div id="messageText">Call me in a bit okay?</div>
+  <img id="messageImage" style="display:none; margin-top:8px; max-width:100%; border-radius:12px;">
+</div>
 </div>
 
 <script>
 const messages = [
-  "Call me in a bit okay?",
-  "who's Flo and why is he texting you about your period",
-  "Do you want lasagna",
-  "At gym 👍 Coming home soon",
-  "It's cold, bring a jacket",
-  "What is 67"
+  { text: "Call me in a bit okay?" },
+
+  { text: "Do you want lasagna" },
+
+  { 
+    text: "Gaeul says hi 🐶",
+    image: "https://file.garden/aXTkw7hiK3vn4ais/download%20(2).jpg"
+  },
+
+  { text: "It's cold, bring a jacket" },
+
+  { 
+    text: "At gym 👍 coming home soon",
+    image: "https://file.garden/aXTkw7hiK3vn4ais/download%20(3).jpg"
+  },
 ];
 
 let index = 0;
-const bubble = document.getElementById("message");
+
+const textEl = document.getElementById("messageText");
+const imageEl = document.getElementById("messageImage");
+const bubble = document.getElementById("bubble");
 
 function nextMessage() {
   index++;
@@ -111,13 +125,25 @@ function nextMessage() {
     index = 0;
   }
 
-  bubble.textContent = messages[index];
+  const current = messages[index];
+
+  // Set text
+  textEl.textContent = current.text;
+
+  // Handle image
+  if (current.image) {
+    imageEl.src = current.image;
+    imageEl.style.display = "block";
+  } else {
+    imageEl.style.display = "none";
+  }
 
   // Restart animation
   bubble.classList.remove("pop");
-  void bubble.offsetWidth; // forces reflow
+  void bubble.offsetWidth;
   bubble.classList.add("pop");
 }
+
 </script>
 
 </body>
