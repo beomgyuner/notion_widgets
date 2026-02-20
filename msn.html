@@ -148,7 +148,7 @@ body{
 <body>
 
 <div class="chat-window">
-  <div class="header">♡ online ♡</div>
+  <div class="header">hoonie ♡</div>
   <div class="chat-box" id="chatBox"></div>
   <div class="choices" id="choices"></div>
 </div>
@@ -193,6 +193,7 @@ const scenarios = [
   }
 },
 
+    // who's that?
 {
   start:{
     text:"Hi Hali, who's that?",
@@ -231,6 +232,40 @@ const scenarios = [
   },
   dw:{
     text:"If it was me then it wouldn't be",
+    choices:[]
+  }
+    // jellyhali
+{
+  start:{
+    text:"What's wrong, pretty?",
+    choices:[
+      {text:"some pretty girl called u cute", next:"heh"},
+      {text:"i'm not mad", next:"dontlie"}
+    ]
+  },
+  heh:{
+    text:"Really? I thought she was talking about you :)",
+    choices:[
+      {text:"SHE WAS ALLLL OVER YOU 😡 ugh i wanna go home", next:"alr"}
+    ]
+  },
+  dontlie:{
+    text:"Alright, if you say so. Just come here and stop pouting",
+    choices:[]
+  },
+  alr:{
+    text:"No need for that. Just sit in the car, I'll be back in a bit when I'm done paying then we'll leave. Okay?",
+    choices:[
+      {text:"okay...", next:"good"},
+      {text:"fine.. only bc ur cute :3", next:"ily"}
+    ]
+  },
+  good:{
+    text:":) So sweet",
+    choices:[]
+  },
+  ily:{
+    text:"Yeah yeah. Love you.",
     choices:[]
   }
 }
