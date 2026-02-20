@@ -161,32 +161,34 @@ const botAvatar = "https://i.imgur.com/8Km9tLL.png";
 const userAvatar = "https://i.imgur.com/2RMz8gT.png";
 
 const scenarios = [
-
+  // miss me
 {
   start:{
-    text:"hi… why are you awake at this hour? (๑•́ ₃ •̀๑)",
+    text:"So you're saying you don't miss me and hate me and you wanna break up?",
     choices:[
-      {text:"thinking about you.", next:"blush"},
-      {text:"couldn’t sleep.", next:"sleep"}
+      {text:"NO???", next:"hmph"},
+      {text:"im saying u need to lie down ...", next:"rudie"}
     ]
   },
-  blush:{
-    text:"don’t say that so casually… my heart isn’t prepared (⁄ ⁄•⁄ω⁄•⁄ ⁄)",
+  hmph:{
+    text:"Okay u can go hang out with ur side hoe. Cloud or whatever his name is",
     choices:[]
   },
-  sleep:{
-    text:"me too… maybe we’re thinking about the same thing?",
+  rudie:{
+    text:"I should be saying that to you.",
     choices:[
-      {text:"maybe.", next:"maybe"},
-      {text:"don’t assume things.", next:"tsun"}
+      {text:"can u leave me alone", next:"hmph"},
+      {text:"I'M DOING IMPORTANT STUFF", next:"tsun"}
     ]
   },
-  maybe:{
-    text:"…then stay with me a little longer ♡",
-    choices:[]
+  isee:{
+    text:"I see you making a new spotify playlist don't lie",
+    choices:[
+      {text:"HOW DO YOU KNOW THAT", next:"acc"}
+    ]
   },
-  tsun:{
-    text:"wow okay cold person era activated.",
+  acc:{
+    text:"? We share a Spotify account",
     choices:[]
   }
 },
