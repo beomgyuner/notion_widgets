@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retro Messenger VN</title>
+
+<style>
+body {
+  background: #008080;
+  font-family: Tahoma, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* WINDOW */
+.window {
+  width: 520px;
+  background: #c0c0c0;
+  border: 2px solid #ffffff;
+  box-shadow: inset -2px -2px #808080, inset 2px 2px #ffffff;
+}
+
+/* TITLE BAR */
+.titlebar {
+  background: #000080;
+  color: white;
+  padding: 4px 8px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titlebar button {
+  background: #c0c0c0;
+  border: 2px solid #ffffff;
+  box-shadow: inset -2px -2px #808080, inset 2px 2px #ffffff;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* CHAT AREA */
+.chat-container {
+  display: flex;
+  height: 320px;
+}
+
+.chat-box {
+  flex: 3;
+  background: white;
+  padding: 10px;
+  overflow-y: auto;
+  border: 2px solid #808080;
+  font-size: 14px;
+}
+
+.sidebar {
+  flex: 1;
+  background: #dcdcdc;
+  border-left: 2px solid #808080;
+  padding: 10px;
+  text-align: center;
+}
+
+.sidebar img {
+  width: 100%;
+  border: 2px solid #808080;
+  margin-bottom: 10px;
+}
+
+/* CHOICES */
+.choices {
+  padding: 8px;
+  background: #c0c0c0;
+  border-top: 2px solid #808080;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.choice-btn {
+  padding: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  background: #e0e0e0;
+  border: 2px solid #ffffff;
+  box-shadow: inset -2px -2px #808080, inset 2px 2px #ffffff;
+}
+
+.choice-btn:active {
+  box-shadow: inset 2px 2px #808080, inset -2px -2px #ffffff;
+}
+
+.message {
+  margin-bottom: 6px;
+}
+
+.bot { color: #800000; }
+.user { color: #000080; }
+
+</style>
+</head>
+<body>
+
+<div class="window">
+  <div class="titlebar">
+    Retro Messenger
+    <button onclick="location.reload()">↻</button>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-box" id="chatBox"></div>
+    <div class="sidebar">
+      <img src="https://i.imgur.com/8Km9tLL.png">
+      <div><b>NPC</b></div>
+    </div>
+  </div>
+
+  <div class="choices" id="choices"></div>
+</div>
+
+<script>
+const chatBox = document.getElementById("chatBox");
+const choicesDiv = document.getElementById("choices");
+
+let currentState;
+
+/* ===== SCENARIOS ===== */
+const scenarios = [
+
+{
+  start: {
+    text: "You suddenly get a message after 8 years… 'Hey… is this still your number?'",
+    choices: [
+      { text: "…Who is this?", next: "who" },
+      { text: "I knew you'd text someday.", next: "confident" }
+    ]
+  },
+  who: {
+    text: "You forgot already? It’s me… we used to walk home together.",
+    choices: [
+      { text: "Wait… really?", next: "soft" },
+      { text: "Oh. That was a long time ago.", next: "cold" }
+    ]
+  },
+  confident: {
+    text: "You haven't changed at all. Still dramatic.",
+    choices: []
+  },
+  soft: {
+    text: "Yeah… I was nervous to text you.",
+    choices: []
+  },
+  cold: {
+    text: "…Yeah. I guess it was.",
+    choices: []
+  }
+},
+
+{
+  start: {
+    text: "It’s 2AM. They send: 'Are you awake?'",
+    choices: [
+      { text: "Yeah. Can't sleep.", next: "cant_sleep" },
+      { text: "Why are you texting me this late?", next: "why_late" }
+    ]
+  },
+  cant_sleep: {
+    text: "Me neither. I was thinking about you.",
+    choices: [
+      { text: "Why?", next: "why_me" },
+      { text: "That's dangerous.", next: "dangerous" }
+    ]
+  },
+  why_late: {
+    text: "I didn’t think you'd reply…",
+    choices: []
+  },
+  why_me: {
+    text: "Because some people stay in your mind longer than they should.",
+    choices: []
+  },
+  dangerous: {
+    text: "Maybe I like dangerous thoughts.",
+    choices: []
+  }
+},
+
+{
+  start: {
+    text: "They send a blurry photo from your old school.",
+    choices: [
+      { text: "Why are you there?", next: "there" },
+      { text: "You kept this place in mind too?", next: "nostalgic" }
+    ]
+  },
+  there: {
+    text: "I had something I never said back then.",
+    choices: [
+      { text: "You can say it now.", next: "say_now" },
+      { text: "Some things are better unsaid.", next: "unsaid" }
+    ]
+  },
+  nostalgic: {
+    text: "Some places don’t forget people.",
+    choices: []
+  },
+  say_now: {
+    text: "…I liked you.",
+    choices: []
+  },
+  unsaid: {
+    text: "Maybe you're right.",
+    choices: []
+  }
+}
+
+];
+
+/* ===== INITIALIZE RANDOM SCENARIO ===== */
+const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+currentState = "start";
+
+/* ===== FUNCTIONS ===== */
+
+function addMessage(text, sender="bot") {
+  const msg = document.createElement("div");
+  msg.classList.add("message", sender);
+  msg.innerHTML = "<b>" + (sender === "bot" ? "NPC: " : "You: ") + "</b>" + text;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function showChoices(choices) {
+  choicesDiv.innerHTML = "";
+  choices.forEach(choice => {
+    const btn = document.createElement("button");
+    btn.classList.add("choice-btn");
+    btn.innerText = choice.text;
+    btn.onclick = () => {
+      addMessage(choice.text, "user");
+      nextState(choice.next);
+    };
+    choicesDiv.appendChild(btn);
+  });
+}
+
+function nextState(state) {
+  currentState = state;
+  setTimeout(() => {
+    addMessage(scenario[state].text, "bot");
+    showChoices(scenario[state].choices);
+  }, 400);
+}
+
+/* ===== START ===== */
+window.onload = () => {
+  addMessage(scenario.start.text);
+  showChoices(scenario.start.choices);
+};
+
+</script>
+
+</body>
+</html>
