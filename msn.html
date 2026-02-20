@@ -2,124 +2,117 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Retro Messenger VN</title>
+<title>♡ chat ♡</title>
 
 <style>
-body {
-  background: #008080;
-  font-family: Tahoma, Verdana, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+body{
+  margin:0;
+  background:linear-gradient(#ffd6ec,#ffc2e3);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
-/* WINDOW */
-.window {
-  width: 520px;
-  background: #c0c0c0;
-  border: 2px solid #ffffff;
-  box-shadow: inset -2px -2px #808080, inset 2px 2px #ffffff;
+/* MAIN CHAT WINDOW */
+.chat-window{
+  width:360px;
+  height:600px;
+  background:#fff0f7;
+  border-radius:30px;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.2),
+    inset 0 2px 0 rgba(255,255,255,0.8);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border:1px solid #ffb6d9;
 }
 
-/* TITLE BAR */
-.titlebar {
-  background: #000080;
-  color: white;
-  padding: 4px 8px;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.titlebar button {
-  background: #c0c0c0;
-  border: 2px solid #ffffff;
-  box-shadow: inset -2px -2px #808080, inset 2px 2px #ffffff;
-  font-weight: bold;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
+/* HEADER */
+.header{
+  background:linear-gradient(#ff9ccc,#ff6fb4);
+  color:white;
+  padding:14px;
+  text-align:center;
+  font-weight:bold;
+  font-size:16px;
+  letter-spacing:0.5px;
+  box-shadow:inset 0 -2px 0 rgba(255,255,255,0.4);
 }
 
 /* CHAT AREA */
-.chat-container {
-  display: flex;
-  height: 320px;
+.chat-box{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
-.chat-box {
-  flex: 3;
-  background: white;
-  padding: 10px;
-  overflow-y: auto;
-  border: 2px solid #808080;
-  font-size: 14px;
+/* MESSAGE BUBBLES */
+.message{
+  max-width:75%;
+  padding:10px 14px;
+  border-radius:18px;
+  font-size:14px;
+  line-height:1.4;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
-.sidebar {
-  flex: 1;
-  background: #dcdcdc;
-  border-left: 2px solid #808080;
-  padding: 10px;
-  text-align: center;
+.bot{
+  background:linear-gradient(#ffffff,#ffe4f2);
+  align-self:flex-start;
+  border-bottom-left-radius:5px;
 }
 
-.sidebar img {
-  width: 100%;
-  border: 2px solid #808080;
-  margin-bottom: 10px;
+.user{
+  background:linear-gradient(#ff9ccc,#ff6fb4);
+  color:white;
+  align-self:flex-end;
+  border-bottom-right-radius:5px;
 }
 
-/* CHOICES */
-.choices {
-  padding: 8px;
-  background: #c0c0c0;
-  border-top: 2px solid #808080;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+/* CHOICE BUTTONS */
+.choices{
+  padding:12px;
+  background:linear-gradient(#ffe4f2,#ffd3ea);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  border-top:1px solid #ffb6d9;
 }
 
-.choice-btn {
-  padding: 5px;
-  cursor: pointer;
-  font-size: 13px;
-  background: #e0e0e0;
-  border: 2px solid #ffffff;
-  box-shadow: inset -2px -2px #808080, inset 2px 2px #ffffff;
+.choice-btn{
+  background:linear-gradient(#ffffff,#ffe4f2);
+  border:none;
+  border-radius:14px;
+  padding:10px;
+  font-size:13px;
+  cursor:pointer;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  transition:0.2s;
 }
 
-.choice-btn:active {
-  box-shadow: inset 2px 2px #808080, inset -2px -2px #ffffff;
+.choice-btn:hover{
+  background:linear-gradient(#fff,#ffd6ec);
 }
 
-.message {
-  margin-bottom: 6px;
+.choice-btn:active{
+  transform:scale(0.97);
 }
-
-.bot { color: #800000; }
-.user { color: #000080; }
 
 </style>
 </head>
 <body>
 
-<div class="window">
-  <div class="titlebar">
-    Retro Messenger
-    <button onclick="location.reload()">↻</button>
-  </div>
-
-  <div class="chat-container">
-    <div class="chat-box" id="chatBox"></div>
-    <div class="sidebar">
-      <img src="https://i.imgur.com/8Km9tLL.png">
-      <div><b>NPC</b></div>
-    </div>
-  </div>
-
+<div class="chat-window">
+  <div class="header">♡ online ♡</div>
+  <div class="chat-box" id="chatBox"></div>
   <div class="choices" id="choices"></div>
 </div>
 
@@ -129,140 +122,106 @@ const choicesDiv = document.getElementById("choices");
 
 let currentState;
 
-/* ===== SCENARIOS ===== */
+/* RANDOM SCENARIOS */
 const scenarios = [
 
 {
-  start: {
-    text: "You suddenly get a message after 8 years… 'Hey… is this still your number?'",
-    choices: [
-      { text: "…Who is this?", next: "who" },
-      { text: "I knew you'd text someday.", next: "confident" }
+  start:{
+    text:"hi… why are you awake at this hour? (๑•́ ₃ •̀๑)",
+    choices:[
+      {text:"thinking about you.", next:"blush"},
+      {text:"couldn’t sleep.", next:"sleep"}
     ]
   },
-  who: {
-    text: "You forgot already? It’s me… we used to walk home together.",
-    choices: [
-      { text: "Wait… really?", next: "soft" },
-      { text: "Oh. That was a long time ago.", next: "cold" }
+  blush:{
+    text:"don’t say that so casually… my heart isn’t prepared (⁄ ⁄•⁄ω⁄•⁄ ⁄)",
+    choices:[]
+  },
+  sleep:{
+    text:"me too… maybe we’re thinking about the same thing?",
+    choices:[
+      {text:"maybe.", next:"maybe"},
+      {text:"don’t assume things.", next:"tsun"}
     ]
   },
-  confident: {
-    text: "You haven't changed at all. Still dramatic.",
-    choices: []
+  maybe:{
+    text:"…then stay with me a little longer ♡",
+    choices:[]
   },
-  soft: {
-    text: "Yeah… I was nervous to text you.",
-    choices: []
-  },
-  cold: {
-    text: "…Yeah. I guess it was.",
-    choices: []
+  tsun:{
+    text:"wow okay cold person era activated.",
+    choices:[]
   }
 },
 
 {
-  start: {
-    text: "It’s 2AM. They send: 'Are you awake?'",
-    choices: [
-      { text: "Yeah. Can't sleep.", next: "cant_sleep" },
-      { text: "Why are you texting me this late?", next: "why_late" }
+  start:{
+    text:"i found our old messages from 2012…",
+    choices:[
+      {text:"delete them.", next:"delete"},
+      {text:"what did we say?", next:"curious"}
     ]
   },
-  cant_sleep: {
-    text: "Me neither. I was thinking about you.",
-    choices: [
-      { text: "Why?", next: "why_me" },
-      { text: "That's dangerous.", next: "dangerous" }
+  delete:{
+    text:"you really want to erase that version of us?",
+    choices:[]
+  },
+  curious:{
+    text:"we used so many sparkly emojis… it was embarrassing.",
+    choices:[
+      {text:"i was cute.", next:"cute"},
+      {text:"you were cringe.", next:"cringe"}
     ]
   },
-  why_late: {
-    text: "I didn’t think you'd reply…",
-    choices: []
+  cute:{
+    text:"you were. still are, unfortunately.",
+    choices:[]
   },
-  why_me: {
-    text: "Because some people stay in your mind longer than they should.",
-    choices: []
-  },
-  dangerous: {
-    text: "Maybe I like dangerous thoughts.",
-    choices: []
-  }
-},
-
-{
-  start: {
-    text: "They send a blurry photo from your old school.",
-    choices: [
-      { text: "Why are you there?", next: "there" },
-      { text: "You kept this place in mind too?", next: "nostalgic" }
-    ]
-  },
-  there: {
-    text: "I had something I never said back then.",
-    choices: [
-      { text: "You can say it now.", next: "say_now" },
-      { text: "Some things are better unsaid.", next: "unsaid" }
-    ]
-  },
-  nostalgic: {
-    text: "Some places don’t forget people.",
-    choices: []
-  },
-  say_now: {
-    text: "…I liked you.",
-    choices: []
-  },
-  unsaid: {
-    text: "Maybe you're right.",
-    choices: []
+  cringe:{
+    text:"wow… betrayal in 4k.",
+    choices:[]
   }
 }
 
 ];
 
-/* ===== INITIALIZE RANDOM SCENARIO ===== */
-const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
-currentState = "start";
+const scenario = scenarios[Math.floor(Math.random()*scenarios.length)];
+currentState="start";
 
-/* ===== FUNCTIONS ===== */
-
-function addMessage(text, sender="bot") {
-  const msg = document.createElement("div");
-  msg.classList.add("message", sender);
-  msg.innerHTML = "<b>" + (sender === "bot" ? "NPC: " : "You: ") + "</b>" + text;
+function addMessage(text, sender="bot"){
+  const msg=document.createElement("div");
+  msg.classList.add("message",sender);
+  msg.innerText=text;
   chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  chatBox.scrollTop=chatBox.scrollHeight;
 }
 
-function showChoices(choices) {
-  choicesDiv.innerHTML = "";
-  choices.forEach(choice => {
-    const btn = document.createElement("button");
+function showChoices(choices){
+  choicesDiv.innerHTML="";
+  choices.forEach(choice=>{
+    const btn=document.createElement("button");
     btn.classList.add("choice-btn");
-    btn.innerText = choice.text;
-    btn.onclick = () => {
-      addMessage(choice.text, "user");
+    btn.innerText=choice.text;
+    btn.onclick=()=>{
+      addMessage(choice.text,"user");
       nextState(choice.next);
     };
     choicesDiv.appendChild(btn);
   });
 }
 
-function nextState(state) {
-  currentState = state;
-  setTimeout(() => {
-    addMessage(scenario[state].text, "bot");
+function nextState(state){
+  currentState=state;
+  setTimeout(()=>{
+    addMessage(scenario[state].text,"bot");
     showChoices(scenario[state].choices);
-  }, 400);
+  },400);
 }
 
-/* ===== START ===== */
-window.onload = () => {
-  addMessage(scenario.start.text);
+window.onload=()=>{
+  addMessage(scenario.start.text,"bot");
   showChoices(scenario.start.choices);
 };
-
 </script>
 
 </body>
