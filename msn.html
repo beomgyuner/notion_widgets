@@ -7,7 +7,7 @@
 <style>
 body{
   margin:0;
-  background:linear-gradient(#ffd6ec,#ffc2e3);
+  background: #ffffff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display:flex;
   justify-content:center;
@@ -19,15 +19,20 @@ body{
 .chat-window{
   width:360px;
   height:600px;
-  background:#fff0f7;
+  background:linear-gradient(#ffeaf5,#ffd6ec);
   border-radius:30px;
+  border:1px solid #f7a8cf;
+
   box-shadow:
-    0 10px 25px rgba(0,0,0,0.2),
-    inset 0 2px 0 rgba(255,255,255,0.8);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  border:1px solid #ffb6d9;
+    /* outer shadow (tight + solid) */
+    0 6px 10px rgba(0,0,0,0.25),
+
+    /* bottom emboss shadow */
+    inset 0 -3px 4px rgba(0,0,0,0.15),
+
+    /* top glossy highlight */
+    inset 0 2px 0 rgba(255,255,255,0.9);
+}
 }
 
 /* HEADER */
