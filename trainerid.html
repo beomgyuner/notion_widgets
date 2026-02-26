@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trainer Card</title>
+
+<style>
+body {
+    background: #ffc9dc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;    
+    overflow: hidden;
+    font-family: monospace;
+}
+
+/* FLIP CONTAINER */
+.card-container {
+    perspective: 1200px;
+    width: 600px;
+    height: 350px;
+}
+
+.id-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+    cursor: pointer;
+}
+
+.id-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* FRONT DESIGN */
+.front {
+    background: #f7b7cc;
+    border: 8px solid #a04a6b;
+    box-sizing: border-box;
+    padding: 20px;
+    color: #6b2b42;
+}
+
+/* Header */
+.trainer-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* ID Number */
+.trainer-id {
+    text-align: right;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Main Content */
+.trainer-content {
+    display: flex;
+    gap: 20px;
+}
+
+/* Trainer Sprite */
+.trainer {
+    width: 150px;
+}
+
+.trainer img {
+    width: 100%;
+}
+
+/* Pokémon Grid */
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(2, 70px);
+    gap: 8px;
+}
+
+.pokemon-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+    border: 3px solid #6b2b42;
+}
+
+/* Badges Row */
+.badges {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.badges img {
+    width: 45px;
+}
+
+/* BACK */
+.back {
+    background: #f7b7cc;
+    border: 8px solid #a04a6b;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #6b2b42;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="card-container">
+<div class="id-card" onclick="this.classList.toggle('flipped')">
+
+    <!-- FRONT -->
+    <div class="card-face front">
+
+        <div class="trainer-header">
+            <span>TRAINER CARD</span>
+            <span>Dr. Bigly</span>
+        </div>
+
+        <div class="trainer-id">
+            0000-0000-0000
+        </div>
+
+        <div class="trainer-content">
+
+            <!-- Trainer Sprite -->
+            <div class="trainer">
+                <img src="https://play.pokemonshowdown.com/sprites/trainers/dp.png">
+            </div>
+
+            <!-- Pokémon -->
+            <div class="pokemon-grid">
+                <img src="https://play.pokemonshowdown.com/sprites/bw/empoleon.png">
+                <img src="https://play.pokemonshowdown.com/sprites/bw/togekiss.png">
+                <img src="https://play.pokemonshowdown.com/sprites/bw/gardevoir.png">
+                <img src="https://play.pokemonshowdown.com/sprites/bw/celebi.png">
+                <img src="https://play.pokemonshowdown.com/sprites/bw/raichu.png">
+                <img src="https://play.pokemonshowdown.com/sprites/bw/absol.png">
+            </div>
+
+        </div>
+
+        <!-- Badges -->
+        <div class="badges">
+            <img src="https://play.pokemonshowdown.com/sprites/bw/badge1.png">
+            <img src="https://play.pokemonshowdown.com/sprites/bw/badge2.png">
+            <img src="https://play.pokemonshowdown.com/sprites/bw/badge3.png">
+            <img src="https://play.pokemonshowdown.com/sprites/bw/badge4.png">
+            <img src="https://play.pokemonshowdown.com/sprites/bw/badge5.png">
+            <img src="https://play.pokemonshowdown.com/sprites/bw/badge6.png">
+            <img src="https://play.pokemonshowdown.com/sprites/bw/badge7.png">
+            <img src="https://play.pokemonshowdown.com/sprites/bw/badge8.png">
+        </div>
+
+    </div>
+
+    <!-- BACK -->
+    <div class="card-face back">
+        Pokémon League
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>
