@@ -23,14 +23,14 @@ body{
 .textbox{
     width:320px;
     padding:16px 20px;
-    background:white; /* fill */
-    
-    border:6px solid black; /* outer border */
-    border-radius:18px; /* rounded corners */
+    background:white;
+
+    border:6px solid black;
+    border-radius:18px;
 
     box-shadow:
-        inset 0 0 0 4px white,   /* inner white ring */
-        inset 0 0 0 8px black;   /* inner black border */
+        inset 0 0 0 4px white,
+        inset 0 0 0 8px black;
 
     font-size:18px;
     min-height:28px;
@@ -38,25 +38,15 @@ body{
     display:none;
 }
 
-/* pokeball */
+/* pokeball button */
 .pokeball{
-    width:70px;
-    margin-top:15px;
-    display:none;
-    animation:bounce 1.2s infinite;
-}
-
-/* small bounce animation */
-@keyframes bounce{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-6px);}
-}
-
-/* start button */
-button{
-    padding:10px 20px;
-    margin-top:20px;
+    width:90px;
     cursor:pointer;
+    transition:transform .2s;
+}
+
+.pokeball:hover{
+    transform:scale(1.1);
 }
 </style>
 </head>
@@ -65,14 +55,12 @@ button{
 
 <div class="battle-container">
 
-<div id="textbox" class="textbox"></div>
-
 <img id="pokeball"
 class="pokeball"
-src="https://static.wikia.nocookie.net/pokemon/images/3/3b/Love_Ball_HeartGold_and_SoulSilver.png/revision/latest?cb=20241008004443">
+src="https://upload.wikimedia.org/wikipedia/commons/5/53/Poké_Ball_icon.svg"
+onclick="startBattle()">
 
-<br>
-<button onclick="startBattle()">Start Battle</button>
+<div id="textbox" class="textbox"></div>
 
 </div>
 
@@ -86,8 +74,11 @@ function startBattle(){
     const box = document.getElementById("textbox");
     const pokeball = document.getElementById("pokeball");
 
+    /* hide pokeball */
+    pokeball.style.display = "none";
+
+    /* show textbox */
     box.style.display = "block";
-    pokeball.style.display = "block";
 
     typeWriter();
 }
