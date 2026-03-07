@@ -433,7 +433,7 @@ img {
     </div>
   </div>
 
-  <audio src="./music/s-3.mp3" class="-song" 
+  <audio src="./music/s-3.mp3" class="player-song" 
   loop preload="auto"></audio>
 
   <script>
@@ -470,6 +470,14 @@ volumeRange.addEventListener('input', (e)=> {
 
 const song = document.querySelectorAll('.song')
 const album = document.querySelectorAll('.album')
+album.forEach(element => {
+  element.addEventListener('click', () => {
+    const albumSong = element.querySelector('audio') // selects the audio inside the album
+    playerSong.src = albumSong.src
+    playerSong.pause()
+    playerSong.play()
+  })
+})
 const platterColor = document.querySelector('.color')
 album.forEach( element => {
   element.addEventListener('click', ()=> {
