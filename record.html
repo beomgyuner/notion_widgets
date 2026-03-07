@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Record Player</title>
+
+<style>
+
+body{
+    background:#f7e7f5;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:sans-serif;
+}
+
+/* player base */
+.player{
+    position:relative;
+    width:350px;
+    height:250px;
+    background:#ffd6ef;
+    border-radius:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* record disc */
+.record{
+    position:absolute;
+    width:150px;
+    height:150px;
+    background:black;
+    border-radius:50%;
+    left:50px;
+    top:40px;
+}
+
+/* center label */
+.record::after{
+    content:"";
+    position:absolute;
+    width:40px;
+    height:40px;
+    background:#ff8dc7;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* spinning animation */
+.spin{
+    animation:spin 2s linear infinite;
+}
+
+@keyframes spin{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+
+/* needle */
+.needle{
+    position:absolute;
+    width:120px;
+    height:10px;
+    background:#555;
+    top:30px;
+    right:40px;
+    transform-origin:left center;
+    transform:rotate(30deg);
+    cursor:grab;
+    border-radius:5px;
+}
+
+/* needle tip */
+.needle::after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:silver;
+    border-radius:50%;
+    right:-6px;
+    top:-1px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="player">
+
+    <div class="record" id="record"></div>
+    <div class="needle" id="needle"></div>
+
+</div>
+
+<audio id="music" src="https://file.garden/aXTkw7hiK3vn4ais/404%20(New%20Era).mp3"></audio>
+
+<script>
+
+let needle = document.getElementById("needle")
+let record = document.getElementById("record")
+let music = document.getElementById("music")
+
+let dragging = false
+
+needle.addEventListener("mousedown", () => {
+    dragging = true
+})
+
+document.addEventListener("mouseup", () => {
+    dragging = false
+})
+
+document.addEventListener("mousemove", e => {
+
+    if(!dragging) return
+
+    let player = document.querySelector(".player")
+    let rect = player.getBoundingClientRect()
+
+    let x = e.clientX - rect.left
+    let y = e.clientY - rect.top
+
+    needle.style.left = x + "px"
+    needle.style.top = y + "px"
+
+    checkNeedle()
+})
+
+function checkNeedle(){
+
+    let n = needle.getBoundingClientRect()
+    let r = record.getBoundingClientRect()
+
+    let touching =
+        n.right > r.left &&
+        n.left < r.right &&
+        n.bottom > r.top &&
+        n.top < r.bottom
+
+    if(touching){
+
+        record.classList.add("spin")
+
+        if(music.paused){
+            music.play()
+        }
+
+    }else{
+
+        record.classList.remove("spin")
+        music.pause()
+
+    }
+}
+
+</script>
+
+</body>
+</html>
