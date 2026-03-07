@@ -442,7 +442,7 @@ const controller = document.querySelector('.controller')
 const platter = document.querySelector('.platter')
 const switcherRed = document.querySelector('.switcher-red')
 const switcherGreen = document.querySelector('.switcher-green')
-const Song = document.querySelector('.player-song')
+const playerSong = document.querySelector('.player-song')
 const volumeRange = document.querySelector('.volume-range')
 
 switcherRed.classList.add('switcher-red_active')
@@ -451,6 +451,7 @@ switcher.addEventListener('click', ()=> {
   switcher.classList.toggle('switcher_active')
   controller.classList.toggle('controller_active')
   platter.classList.toggle('platter_active')
+
   if(switcher.classList.contains('switcher_active')) {
     switcherGreen.classList.add('switcher-green_active')
     switcherRed.classList.remove('switcher-red_active')
@@ -463,21 +464,13 @@ switcher.addEventListener('click', ()=> {
     playerSong.pause()
   }
 })
-
+	  
 volumeRange.addEventListener('input', (e)=> {
   playerSong.volume = Number(e.target.value)
 })
 
 const song = document.querySelectorAll('.song')
 const album = document.querySelectorAll('.album')
-album.forEach(element => {
-  element.addEventListener('click', () => {
-    const albumSong = element.querySelector('audio') // selects the audio inside the album
-    playerSong.src = albumSong.src
-    playerSong.pause()
-    playerSong.play()
-  })
-})
 const platterColor = document.querySelector('.color')
 album.forEach( element => {
   element.addEventListener('click', ()=> {
