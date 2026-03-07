@@ -7,82 +7,61 @@
 <style>
 
 body{
-    background:#f7e7f5;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#fff;
+margin:0;
+font-family:sans-serif;
 }
 
-/* player base */
+/* container */
 .player{
-    position:relative;
-    width:350px;
-    height:250px;
-    background:#ffd6ef;
-    border-radius:20px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+position:relative;
+width:420px;
+height:300px;
+}
+
+/* player base png */
+.player-base{
+position:absolute;
+width:100%;
+left:0;
+top:0;
+pointer-events:none;
 }
 
 /* record disc */
-.record{
-    position:absolute;
-    width:150px;
-    height:150px;
-    background:black;
-    border-radius:50%;
-    left:50px;
-    top:40px;
-}
-
-/* center label */
-.record::after{
-    content:"";
-    position:absolute;
-    width:40px;
-    height:40px;
-    background:#ff8dc7;
-    border-radius:50%;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+.disc{
+position:absolute;
+width:170px;
+left:125px;
+top:65px;
 }
 
 /* spinning animation */
 .spin{
-    animation:spin 2s linear infinite;
+animation:spin 2s linear infinite;
 }
 
 @keyframes spin{
-    from{ transform:rotate(0deg); }
-    to{ transform:rotate(360deg); }
+from{transform:rotate(0deg)}
+to{transform:rotate(360deg)}
 }
 
-/* needle */
+/* needle image */
 .needle{
-    position:absolute;
-    width:120px;
-    height:10px;
-    background:#555;
-    top:30px;
-    right:40px;
-    transform-origin:left center;
-    transform:rotate(30deg);
-    cursor:grab;
-    border-radius:5px;
-}
+position:absolute;
+width:190px;
+top:10px;
+left:250px;
 
-/* needle tip */
-.needle::after{
-    content:"";
-    position:absolute;
-    width:12px;
-    height:12px;
-    background:silver;
-    border-radius:50%;
-    right:-6px;
-    top:-1px;
+/* anchor point (pivot of tonearm) */
+transform-origin:20px 20px;
+
+transform:rotate(-40deg);
+cursor:grab;
 }
 
 </style>
@@ -92,70 +71,83 @@ body{
 
 <div class="player">
 
-    <div class="record" id="record"></div>
-    <div class="needle" id="needle"></div>
+<img src="https://file.garden/aXTkw7hiK3vn4ais/ai-generated-rectangle-button-with-wooden-texture-isolated-on-transparent-background-free-png.png" class="player-base">
+
+<img src="https://file.garden/aXTkw7hiK3vn4ais/st%2Csmall%2C507x507-pad%2C600x600%2Cf8f8f8.u2.png" id="disc" class="disc">
+
+<img src="https://file.garden/aXTkw7hiK3vn4ais/58e3853c204d556bbd97b151.png" id="needle" class="needle">
 
 </div>
 
-<audio id="music" src="https://file.garden/aXTkw7hiK3vn4ais/404%20(New%20Era).mp3"></audio>
+<audio id="music" src="https://file.garden/aXTkw7hiK3vn4ais/58e3853c204d556bbd97b151.png"></audio>
 
 <script>
 
-let needle = document.getElementById("needle")
-let record = document.getElementById("record")
-let music = document.getElementById("music")
+const needle = document.getElementById("needle")
+const disc = document.getElementById("disc")
+const music = document.getElementById("music")
 
 let dragging = false
 
-needle.addEventListener("mousedown", () => {
-    dragging = true
+/* start dragging */
+needle.addEventListener("mousedown",()=>{
+dragging=true
 })
 
-document.addEventListener("mouseup", () => {
-    dragging = false
+document.addEventListener("mouseup",()=>{
+dragging=false
 })
 
-document.addEventListener("mousemove", e => {
+/* move needle */
+document.addEventListener("mousemove",(e)=>{
 
-    if(!dragging) return
+if(!dragging) return
 
-    let player = document.querySelector(".player")
-    let rect = player.getBoundingClientRect()
+let player = document.querySelector(".player")
+let rect = player.getBoundingClientRect()
 
-    let x = e.clientX - rect.left
-    let y = e.clientY - rect.top
+let x = e.clientX - rect.left
+let y = e.clientY - rect.top
 
-    needle.style.left = x + "px"
-    needle.style.top = y + "px"
+/* pivot location */
+let pivotX = 270
+let pivotY = 30
 
-    checkNeedle()
+let angle = Math.atan2(y - pivotY, x - pivotX) * 180 / Math.PI
+
+needle.style.transform = `rotate(${angle}deg)`
+
+checkContact()
+
 })
 
-function checkNeedle(){
+/* check if needle is touching disc */
+function checkContact(){
 
-    let n = needle.getBoundingClientRect()
-    let r = record.getBoundingClientRect()
+let needleBox = needle.getBoundingClientRect()
+let discBox = disc.getBoundingClientRect()
 
-    let touching =
-        n.right > r.left &&
-        n.left < r.right &&
-        n.bottom > r.top &&
-        n.top < r.bottom
+let touching =
+needleBox.right > discBox.left &&
+needleBox.left < discBox.right &&
+needleBox.bottom > discBox.top &&
+needleBox.top < discBox.bottom
 
-    if(touching){
+if(touching){
 
-        record.classList.add("spin")
+disc.classList.add("spin")
 
-        if(music.paused){
-            music.play()
-        }
+if(music.paused){
+music.play()
+}
 
-    }else{
+}else{
 
-        record.classList.remove("spin")
-        music.pause()
+disc.classList.remove("spin")
+music.pause()
 
-    }
+}
+
 }
 
 </script>
