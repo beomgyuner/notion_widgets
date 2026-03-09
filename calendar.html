@@ -8,7 +8,7 @@
   </legend>
 
   <!-- Scrollable container -->
-  <div style="width:172px; height:300px; overflow:auto;">
+  <div style="width:172px; height:270px; overflow:auto;">
     <iframe 
       src="https://calendar.sakura.ne.jp/blog_cal.html" 
       style="width:100%; height:600px; border:0;">
@@ -19,17 +19,23 @@
 
 <!-- Pink scrollbar styles (Webkit browsers) -->
 <style>
-div::-webkit-scrollbar {
-  width: 6px;
-}
+      ::-webkit-scrollbar {
+      width: 12px;
+      }
 
-div::-webkit-scrollbar-track {
-  background: #fbe;
-  border-radius: 3px;
-}
+      ::-webkit-scrollbar-track {
+        background: #fff0f8;
+        border-radius: 10px;
+        border: 2px solid #ffc6ee;
+      }
 
-div::-webkit-scrollbar-thumb {
-  background-color: hotpink;
-  border-radius: 3px;
-}
+      ::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, #eee 38%, #ccc 62%);
+      border-radius: 5px;
+      border: 1px solid #888;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #ff8fd6, #ff6cc7);
+      }
 </style>
