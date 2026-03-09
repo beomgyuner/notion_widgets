@@ -1,1 +1,35 @@
-<fieldset style="padding:0px;border:0;margin:0px;"><legend><a href="http://calendar-muryou.com/" style="color:hotpink;text-decoration: none;font-size:9pt;" target="_blank" rel="nofollow">さくらカレンダー</a></legend><iframe src="https://calendar.sakura.ne.jp/blog_cal.html" scrolling="no" style="background-color:#fbe;padding:0px;border:0;margin:0px;overflow:hidden;width:172px;height:636px;overflow:hidden;">Unsupported browser!</iframe></fieldset>
+<fieldset style="padding:0; border:0; margin:0; width:172px;">
+  <legend>
+    <a href="http://calendar-muryou.com/" 
+       style="color:hotpink; text-decoration:none; font-size:9pt;" 
+       target="_blank" rel="nofollow">
+      さくらカレンダー
+    </a>
+  </legend>
+
+  <!-- Scrollable container -->
+  <div style="width:172px; height:300px; overflow:auto;">
+    <iframe 
+      src="https://calendar.sakura.ne.jp/blog_cal.html" 
+      style="width:100%; height:600px; border:0;">
+      Unsupported browser!
+    </iframe>
+  </div>
+</fieldset>
+
+<!-- Pink scrollbar styles (Webkit browsers) -->
+<style>
+div::-webkit-scrollbar {
+  width: 6px;
+}
+
+div::-webkit-scrollbar-track {
+  background: #fbe;
+  border-radius: 3px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background-color: hotpink;
+  border-radius: 3px;
+}
+</style>
