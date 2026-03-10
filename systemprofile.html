@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Character Profile</title>
+
+<style>
+
+body{
+  margin:0;
+  background:#ffffff;
+  font-family: "Segoe UI", Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.profile{
+  width:420px;
+  padding:28px;
+  border-radius:12px;
+  border:2px solid #6aa8ff;
+  box-shadow:
+    0 0 12px rgba(100,170,255,0.4),
+    inset 0 0 12px rgba(100,170,255,0.15);
+  background:#ffffff;
+  position:relative;
+}
+
+.profile:before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid rgba(120,170,255,0.5);
+  border-radius:8px;
+}
+
+.title{
+  text-align:center;
+  font-weight:700;
+  font-size:24px;
+  color:#3a7bff;
+  margin-bottom:18px;
+  letter-spacing:1px;
+
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+.section{
+  margin-bottom:12px;
+  line-height:1.5;
+  color:#2b2b2b;
+  font-size:14px;
+
+  animation: glowPulse 5s ease-in-out infinite;
+}
+
+.section strong{
+  color:#3a7bff;
+}
+
+@keyframes glowPulse{
+
+  0%{
+    text-shadow:0 0 0px rgba(90,160,255,0);
+    opacity:0.95;
+  }
+
+  50%{
+    text-shadow:
+      0 0 6px rgba(100,170,255,0.6),
+      0 0 12px rgba(100,170,255,0.4);
+    opacity:1;
+  }
+
+  100%{
+    text-shadow:0 0 0px rgba(90,160,255,0);
+    opacity:0.95;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="profile">
+
+<div class="title">&lt; CHARACTER PROFILE &gt;</div>
+
+<div class="section"><strong>NAME:</strong> tba</div>
+<div class="section"><strong>AGE:</strong> tba</div>
+
+<div class="section">
+<strong>CORE ABILITY</strong><br>
+TBA
+</div>
+
+<div class="section">
+<strong>ULTIMATE SKILL:</strong> TBA
+</div>
+
+<div class="section">
+<strong>PASSIVE SKILLS:</strong><br>
+tba<br>
+tba<br>
+tba
+</div>
+
+<div class="section">
+<strong>ACTIVE SKILLS:</strong><br>
+tba<br>
+tba<br>
+tba
+</div>
+
+<div class="section">
+<strong>UTILITY SKILLS:</strong><br>
+TBA<br>
+tba<br>
+tba
+</div>
+
+<div class="section">
+<strong>OVERALL STATS</strong><br>
+[STAMINE LVL. 0], [STRENGTH LVL. 0], [AGILITY LV. 0], [MANA LVL. 0]
+</div>
+
+</div>
+
+</body>
+</html>
