@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Alert</title>
+
+<style>
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#ffffff;
+  font-family:"Segoe UI",Arial;
+}
+
+/* PANEL */
+
+.profile{
+  width:420px;
+  padding:28px;
+  position:relative;
+
+  background:linear-gradient(
+    180deg,
+    #2b7fd1,
+    #1d5fa8 60%,
+    #134a84
+  );
+
+  border:2px solid rgba(160,220,255,.8);
+  border-radius:12px;
+
+  color:white;
+
+  box-shadow:
+    0 0 30px rgba(60,180,255,.9),
+    inset 0 0 30px rgba(255,255,255,.2);
+
+  /* Center wipe animation */
+  clip-path: circle(0% at 50% 50%);
+  animation: wipeIn 1s ease-out forwards;
+}
+
+/* WIPE ANIMATION */
+@keyframes wipeIn {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(150% at 50% 50%);
+  }
+}
+
+/* INNER FRAME */
+
+.profile:before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(200,230,255,.6);
+  border-radius:8px;
+}
+
+/* WINDOW BUTTONS */
+
+.window-controls{
+  position:absolute;
+  top:10px;
+  right:14px;
+  display:flex;
+  gap:6px;
+}
+
+.window-btn{
+  width:18px;
+  height:18px;
+  border:1px solid rgba(255,255,255,.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  border-radius:3px;
+  font-size:12px;
+  background:rgba(255,255,255,.1);
+}
+
+.window-btn:hover{
+  background:rgba(255,255,255,.3);
+}
+
+/* CORNER DECORATIONS */
+
+.corner{
+  position:absolute;
+  width:80px;
+  height:80px;
+  border:2px solid rgba(140,220,255,.9);
+  opacity:.7;
+}
+
+.corner.tl{
+  top:-2px;
+  left:-2px;
+  border-right:none;
+  border-bottom:none;
+  border-radius:0 0 20px 0;
+}
+
+.corner.tr{
+  top:-2px;
+  right:-2px;
+  border-left:none;
+  border-bottom:none;
+  border-radius:0 0 0 20px;
+}
+
+.corner.bl{
+  bottom:-2px;
+  left:-2px;
+  border-right:none;
+  border-top:none;
+  border-radius:0 20px 0 0;
+}
+
+.corner.br{
+  bottom:-2px;
+  right:-2px;
+  border-left:none;
+  border-top:none;
+  border-radius:20px 0 0 0;
+}
+
+/* HEADER */
+
+.header{
+  text-align:center;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  animation:glow 3s infinite;
+}
+
+.header .icon{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  border:2px solid white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:12px;
+}
+
+/* MESSAGE */
+
+.message{
+  text-align:center;
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.message span{
+  color:#5aff3b;
+  text-shadow:0 0 10px #3cff00;
+}
+
+/* SCANLINES */
+
+.scanlines{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.05) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  opacity:.3;
+}
+
+/* FLOATING SQUARES */
+
+.ui-particles{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.ui-particles span{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:rgba(255,255,255,.7);
+  box-shadow:0 0 6px rgba(255,255,255,.8);
+  animation:float 8s linear infinite;
+}
+
+@keyframes float{
+  0%{
+    transform:translateY(20px);
+    opacity:0;
+  }
+  50%{
+    opacity:.8;
+  }
+  100%{
+    transform:translateY(-60px);
+    opacity:0;
+  }
+}
+
+/* TEXT GLOW */
+
+@keyframes glow{
+  0%{
+    text-shadow:0 0 3px white;
+  }
+  50%{
+    text-shadow:
+      0 0 12px white,
+      0 0 20px #6bd2ff;
+  }
+  100%{
+    text-shadow:0 0 3px white;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="profile" id="panel">
+
+  <div class="scanlines"></div>
+  <div class="ui-particles"></div>
+
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="window-controls">
+    <div class="window-btn" onclick="minimize()">—</div>
+    <div class="window-btn" onclick="maximize()">□</div>
+    <div class="window-btn" onclick="closePanel()">×</div>
+  </div>
+
+  <div class="header">
+    <div class="icon">!</div>
+    ALARM
+  </div>
+
+  <div class="message">
+    [WELCOME, <span>PLAYER</span>.]
+  </div>
+
+</div>
+
+<script>
+
+/* floating squares */
+const container = document.querySelector(".ui-particles");
+
+for(let i=0;i<20;i++){
+  let sq=document.createElement("span");
+  sq.style.left=Math.random()*100+"%";
+  sq.style.top=Math.random()*100+"%";
+  sq.style.animationDuration=(6+Math.random()*6)+"s";
+  container.appendChild(sq);
+}
+
+/* window controls */
+const panel=document.getElementById("panel");
+
+function minimize(){
+  panel.style.height="60px";
+}
+
+function maximize(){
+  panel.style.width="90vw";
+}
+
+function closePanel(){
+  panel.style.display="none";
+}
+
+</script>
+
+</body>
+</html>
