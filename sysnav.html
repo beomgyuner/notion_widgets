@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Notion Navbar</title>
+<style>
+body {
+  margin:0;
+  font-family:"Segoe UI",Arial;
+  background: #111; /* dark to match widget */
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #2b7fd1, #1d5fa8);
+  box-shadow: 0 0 20px rgba(60,180,255,.5);
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 20px auto;
+  position: relative;
+}
+
+/* NAV BUTTONS */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* Hover glow effect */
+.navbar a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(255,255,255,.5), 0 0 16px rgba(60,180,255,.6);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+.navbar a:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Optional: active page highlight */
+.navbar a.active {
+  background: rgba(255,255,255,.1);
+  box-shadow: 0 0 10px rgba(255,255,255,.4), 0 0 20px rgba(60,180,255,.5);
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="https://www.notion.so/Page1" target="_blank">Home</a>
+  <a href="https://www.notion.so/Page2" target="_blank">Projects</a>
+  <a href="https://www.notion.so/Page3" target="_blank">About</a>
+  <a href="https://www.notion.so/Page4" target="_blank">Contact</a>
+</div>
+
+</body>
+</html>
