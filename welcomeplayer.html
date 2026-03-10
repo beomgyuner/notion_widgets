@@ -5,19 +5,18 @@
 <title>System Alert</title>
 
 <style>
-
 body{
   margin:0;
   height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:#ffffff;
+  background:#fff; /* darker background for glow */
   font-family:"Segoe UI",Arial;
+  overflow:hidden;
 }
 
 /* PANEL */
-
 .profile{
   width:420px;
   padding:28px;
@@ -39,33 +38,49 @@ body{
     0 0 30px rgba(60,180,255,.9),
     inset 0 0 30px rgba(255,255,255,.2);
 
-  /* Center wipe animation */
-  clip-path: circle(0% at 50% 50%);
-  animation: wipeIn 1s ease-out forwards;
+  /* Glowing radial wipe overlay */
+  overflow:hidden;
 }
 
-/* WIPE ANIMATION */
-@keyframes wipeIn {
+.profile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+  transform: scale(0);
+  opacity: 1;
+  animation: glowWipe 1s ease-out forwards;
+}
+
+/* GLOWING WIPE ANIMATION */
+@keyframes glowWipe {
   0% {
-    clip-path: circle(0% at 50% 50%);
+    transform: scale(0);
+    opacity: 0.8;
+    filter: blur(20px);
+  }
+  50% {
+    opacity: 1;
   }
   100% {
-    clip-path: circle(150% at 50% 50%);
+    transform: scale(3);
+    opacity: 0;
+    filter: blur(40px);
   }
 }
 
 /* INNER FRAME */
-
-.profile:before{
+.profile:after{
   content:"";
   position:absolute;
   inset:8px;
   border:1px solid rgba(200,230,255,.6);
   border-radius:8px;
+  pointer-events:none;
 }
 
 /* WINDOW BUTTONS */
-
 .window-controls{
   position:absolute;
   top:10px;
@@ -92,7 +107,6 @@ body{
 }
 
 /* CORNER DECORATIONS */
-
 .corner{
   position:absolute;
   width:80px;
@@ -134,7 +148,6 @@ body{
 }
 
 /* HEADER */
-
 .header{
   text-align:center;
   font-size:20px;
@@ -160,7 +173,6 @@ body{
 }
 
 /* MESSAGE */
-
 .message{
   text-align:center;
   font-size:24px;
@@ -174,7 +186,6 @@ body{
 }
 
 /* SCANLINES */
-
 .scanlines{
   position:absolute;
   inset:0;
@@ -190,7 +201,6 @@ body{
 }
 
 /* FLOATING SQUARES */
-
 .ui-particles{
   position:absolute;
   inset:0;
@@ -222,7 +232,6 @@ body{
 }
 
 /* TEXT GLOW */
-
 @keyframes glow{
   0%{
     text-shadow:0 0 3px white;
@@ -270,7 +279,6 @@ body{
 </div>
 
 <script>
-
 /* floating squares */
 const container = document.querySelector(".ui-particles");
 
@@ -296,7 +304,6 @@ function maximize(){
 function closePanel(){
   panel.style.display="none";
 }
-
 </script>
 
 </body>
