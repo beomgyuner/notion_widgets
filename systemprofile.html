@@ -63,6 +63,75 @@ body{
   background-repeat:no-repeat;
 
   opacity:.7;
+
+  .ui-particles{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.ui-particles span{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:rgba(255,255,255,0.7);
+  box-shadow:0 0 6px rgba(255,255,255,0.8);
+
+  animation: floatSquares linear infinite;
+  opacity:.7;
+}
+
+const particleContainer = document.querySelector(".ui-particles");
+
+for(let i=0;i<25;i++){
+
+let square = document.createElement("span");
+
+square.style.left = Math.random()*100 + "%";
+square.style.top = Math.random()*100 + "%";
+
+square.style.animationDuration = 6 + Math.random()*8 + "s";
+square.style.animationDelay = Math.random()*5 + "s";
+
+particleContainer.appendChild(square);
+
+}
+
+/* different sizes */
+
+.ui-particles span:nth-child(3n){
+  width:4px;
+  height:4px;
+}
+
+.ui-particles span:nth-child(5n){
+  width:8px;
+  height:8px;
+}
+
+@keyframes floatSquares{
+
+0%{
+transform:translateY(20px);
+opacity:0;
+}
+
+20%{
+opacity:.8;
+}
+
+80%{
+opacity:.8;
+}
+
+100%{
+transform:translateY(-40px);
+opacity:0;
+}
+
+}
+  
 }
 
 /* WINDOW CONTROLS */
@@ -190,6 +259,7 @@ opacity:.95;
 <div class="profile" id="panel">
 
 <div class="scanlines"></div>
+<div class="ui-particles"></div>
 
 <div class="window-controls">
 <div class="window-btn" onclick="minimize()">—</div>
@@ -199,7 +269,7 @@ opacity:.95;
 
 <div class="content">
 
-<div class="title">&lt; CHARACTER PROFILE &gt;</div>
+<div class="title">&lt; HUNTER PROFILE &gt;</div>
 
 <div class="section"><strong>NAME:</strong> tba</div>
 <div class="section"><strong>AGE:</strong> tba</div>
