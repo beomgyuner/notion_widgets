@@ -8,77 +8,178 @@
 
 body{
   margin:0;
-  background:#ffffff;
-  font-family: "Segoe UI", Arial, sans-serif;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:#ffffff;
 }
+
+/* MAIN PANEL */
 
 .profile{
   width:420px;
-  padding:28px;
-  border-radius:12px;
-  border:2px solid #6aa8ff;
-  box-shadow:
-    0 0 12px rgba(100,170,255,0.4),
-    inset 0 0 12px rgba(100,170,255,0.15);
-  background:#ffffff;
+  padding:26px 28px 30px 28px;
   position:relative;
+  color:white;
+
+  background:
+    linear-gradient(145deg,#2c77c9,#4aa0ff 60%,#6bb6ff);
+
+  border:2px solid rgba(180,220,255,0.7);
+  border-radius:12px;
+
+  box-shadow:
+    0 0 20px rgba(80,170,255,.7),
+    inset 0 0 25px rgba(255,255,255,.15);
 }
 
-.profile:before{
+/* INNER FRAME */
+
+.profile::before{
   content:"";
   position:absolute;
-  inset:6px;
-  border:1px solid rgba(120,170,255,0.5);
+  inset:8px;
+  border:1px solid rgba(200,230,255,.6);
   border-radius:8px;
 }
+
+/* CORNER DECORATIONS */
+
+.profile::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+
+  background:
+  linear-gradient(#9bd0ff,#9bd0ff) top left,
+  linear-gradient(#9bd0ff,#9bd0ff) top right,
+  linear-gradient(#9bd0ff,#9bd0ff) bottom left,
+  linear-gradient(#9bd0ff,#9bd0ff) bottom right;
+
+  background-size:20px 3px;
+  background-repeat:no-repeat;
+
+  opacity:.7;
+}
+
+/* WINDOW CONTROLS */
+
+.window-controls{
+  position:absolute;
+  top:10px;
+  right:12px;
+  display:flex;
+  gap:6px;
+}
+
+.window-btn{
+  width:18px;
+  height:18px;
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:3px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  font-size:12px;
+  color:white;
+  background:rgba(255,255,255,0.1);
+  transition:0.2s;
+}
+
+.window-btn:hover{
+  background:rgba(255,255,255,0.3);
+}
+
+/* TITLE */
 
 .title{
   text-align:center;
   font-weight:700;
-  font-size:24px;
-  color:#3a7bff;
-  margin-bottom:18px;
+  font-size:22px;
   letter-spacing:1px;
+  margin-bottom:18px;
 
-  animation: glowPulse 4s ease-in-out infinite;
+  animation:textGlow 4s ease-in-out infinite;
 }
+
+/* TEXT */
 
 .section{
   margin-bottom:12px;
-  line-height:1.5;
-  color:#2b2b2b;
   font-size:14px;
+  line-height:1.5;
 
-  animation: glowPulse 5s ease-in-out infinite;
+  animation:textGlow 6s ease-in-out infinite;
 }
 
 .section strong{
-  color:#3a7bff;
+  color:#e8f5ff;
 }
 
-@keyframes glowPulse{
+/* TEXT GLOW */
 
-  0%{
-    text-shadow:0 0 0px rgba(90,160,255,0);
-    opacity:0.95;
-  }
+@keyframes textGlow{
 
-  50%{
-    text-shadow:
-      0 0 6px rgba(100,170,255,0.6),
-      0 0 12px rgba(100,170,255,0.4);
-    opacity:1;
-  }
+0%{
+text-shadow:0 0 2px rgba(255,255,255,.2);
+opacity:.95;
+}
 
-  100%{
-    text-shadow:0 0 0px rgba(90,160,255,0);
-    opacity:0.95;
-  }
+50%{
+text-shadow:
+0 0 8px rgba(255,255,255,.8),
+0 0 16px rgba(120,200,255,.7);
+opacity:1;
+}
 
+100%{
+text-shadow:0 0 2px rgba(255,255,255,.2);
+opacity:.95;
+}
+
+}
+
+/* SCANLINE EFFECT */
+
+.profile .scanlines{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.05) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+
+  animation:scanMove 6s linear infinite;
+  opacity:.35;
+}
+
+@keyframes scanMove{
+  from{background-position:0 0;}
+  to{background-position:0 40px;}
+}
+
+/* MINIMIZE */
+
+.minimized .content{
+  display:none;
+}
+
+/* MAXIMIZE */
+
+.maximized{
+  width:90vw;
+  height:90vh;
+  overflow:auto;
 }
 
 </style>
@@ -86,7 +187,17 @@ body{
 
 <body>
 
-<div class="profile">
+<div class="profile" id="panel">
+
+<div class="scanlines"></div>
+
+<div class="window-controls">
+<div class="window-btn" onclick="minimize()">—</div>
+<div class="window-btn" onclick="maximize()">□</div>
+<div class="window-btn" onclick="closePanel()">×</div>
+</div>
+
+<div class="content">
 
 <div class="title">&lt; CHARACTER PROFILE &gt;</div>
 
@@ -125,10 +236,29 @@ tba
 
 <div class="section">
 <strong>OVERALL STATS</strong><br>
-[STAMINE LVL. 0], [STRENGTH LVL. 0], [AGILITY LV. 0], [MANA LVL. 0]
+[STAMINA LVL. 0], [STRENGTH LVL. 0], [AGILITY LV. 0], [MANA LVL. 0]
 </div>
 
 </div>
+</div>
+
+<script>
+
+const panel = document.getElementById("panel");
+
+function minimize(){
+panel.classList.toggle("minimized");
+}
+
+function maximize(){
+panel.classList.toggle("maximized");
+}
+
+function closePanel(){
+panel.style.display="none";
+}
+
+</script>
 
 </body>
 </html>
