@@ -2,9 +2,9 @@
 <html>
 <head>
 <style>
-html, body {
+body {
     margin: 0;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,55 +16,85 @@ html, body {
     width: 220px;
     aspect-ratio: 236 / 327;
     position: relative;
+    perspective: 1200px;
     cursor: pointer;
-    perspective: 1000px; /* needed for 3D peel */
 }
 
 /* BASE IMAGE */
-.stamp {
+.base {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-/* BOTTOM (revealed) */
-#revealStamp {
     z-index: 1;
 }
 
-/* TOP STICKER */
-#topStamp {
+/* STICKER WRAPPER */
+.sticker {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     z-index: 2;
-    transform-origin: top left;
-    transition: transform 0.8s cubic-bezier(.65,.05,.36,1), 
-                filter 0.8s ease,
-                opacity 0.5s ease;
-    
-    /* subtle depth */
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 
-/* CURL EFFECT (pseudo element) */
-#topStamp::after {
-    content: "";
+/* STATIC PART */
+.sticker-main {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    overflow: hidden;
+}
+
+/* FLAP (THE MAGIC) */
+.flap {
+    position: absolute;
+    inset: 0;
+    transform-origin: top left;
+    transition: transform 0.8s cubic-bezier(.65,.05,.36,1),
+                filter 0.6s ease;
+}
+
+/* IMAGE INSIDE */
+.sticker img,
+.flap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     pointer-events: none;
 }
 
-/* PEELED STATE */
-.stamp-reveal-container.peeled #topStamp {
-    transform: rotate(-35deg) translate(-40%, -40%) scale(0.9);
-    filter: drop-shadow(0 15px 20px rgba(0,0,0,0.5));
-    opacity: 0;
+/* SHADOW + DEPTH */
+.flap {
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3));
 }
 
-.stamp-reveal-container.peeled #topStamp::after {
+/* CURL LIGHT */
+.flap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.5) 0%,
+        rgba(255,255,255,0.2) 20%,
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* PEELED STATE */
+.stamp-reveal-container.peeled .flap {
+    transform: rotate(-40deg) translate(-40%, -40%) scale(0.95);
+    filter: drop-shadow(0 20px 25px rgba(0,0,0,0.5));
+}
+
+.stamp-reveal-container.peeled .flap::after {
     opacity: 1;
+}
+
+/* OPTIONAL: slight dim on stuck part */
+.stamp-reveal-container.peeled .sticker-main {
+    filter: brightness(0.9);
 }
 </style>
 </head>
@@ -73,9 +103,20 @@ html, body {
 
 <div class="stamp-reveal-container" onclick="this.classList.toggle('peeled')">
 
-    <img src="https://i.ibb.co/5gD9SsM1/66-SABO.png" id="revealStamp" class="stamp">
+    <!-- revealed image -->
+    <img src="https://i.ibb.co/G4811wMq/66-SABO.png" class="base">
 
-    <img src="https://i.ibb.co/G347jtPV/66-CHOPPER.jpg" id="topStamp" class="stamp">
+    <!-- sticker -->
+    <div class="sticker">
+        <div class="sticker-main">
+            <img src="https://i.ibb.co/nxG3gx0/66-CHOPPER.png">
+        </div>
+
+        <!-- peel flap -->
+        <div class="flap">
+            <img src="https://i.ibb.co/nxG3gx0/66-CHOPPER.png">
+        </div>
+    </div>
 
 </div>
 
