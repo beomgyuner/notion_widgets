@@ -15,7 +15,7 @@ html, body {
     font-family: sans-serif;
 }
 
-/* CONTAINER (fixed exact size) */
+/* CONTAINER */
 .stamp-reveal-container {
     width: 236px;
     height: 327px;
@@ -42,36 +42,50 @@ html, body {
 /* TOP STICKER */
 #topStamp {
     z-index: 2;
-    transform-origin: bottom right;
+    transform-origin: top left;
     transition:
-        transform 0.8s cubic-bezier(.25,.8,.25,1),
+        transform 0.9s cubic-bezier(.22,1,.36,1),
         opacity 0.4s ease;
+    position: absolute;
 }
 
-/* ✨ PEEL EFFECT */
+/* ✨ CURL CORNER EFFECT */
+#topStamp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+
+    background: radial-gradient(circle at top left,
+        rgba(255,255,255,0.9) 0%,
+        rgba(255,255,255,0.6) 40%,
+        rgba(0,0,0,0.15) 60%,
+        transparent 70%);
+
+    border-top-left-radius: 100%;
+    transform: scale(0);
+    transform-origin: top left;
+    transition: transform 0.4s ease;
+    pointer-events: none;
+}
+
+/* SHOW CURL ON HOVER */
+.stamp-reveal-container:hover #topStamp::before {
+    transform: scale(1);
+}
+
+/* ✨ PEEL TO TOP LEFT */
 .stamp-reveal-container.peeled #topStamp {
     transform:
-        rotate(-25deg)
-        translate(120%, 120%)
+        rotate(25deg)
+        translate(-120%, -120%)
         scale(0.85);
     opacity: 0;
 }
 
-/* SUBTLE SHADOW FOR DEPTH */
-#topStamp::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.stamp-reveal-container:hover #topStamp::after {
-    opacity: 1;
-}
-
-/* OPTIONAL PROMPT */
+/* PROMPT */
 .peel-prompt {
     position: absolute;
     bottom: 6px;
@@ -102,7 +116,7 @@ html, body {
 
         <img src="https://i.ibb.co/nxG3gx0/66-CHOPPER.png" id="topStamp" class="stamp">
 
-        <div class="peel-prompt">tap / click</div>
+
     </div>
 </div>
 
