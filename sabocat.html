@@ -2,39 +2,45 @@
 <html>
 <head>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            /* 1. Force the body to match your section size */
-            width: 171px;
-            height: 433px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: transparent; /* Changed to transparent so it blends in */
-            overflow: hidden;
-        }
+    /* 1. This centers the 171px box on the actual screen */
+    html {
+        display: flex;
+        justify-content: center;
+        background-color: transparent; 
+        height: 100%;
+    }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(10px); } /* Reduced movement for small space */
-            100% { transform: translateY(0px); }
-        }
+    body {
+        margin: 0;
+        padding: 0;
+        /* 2. Your specific section size */
+        width: 171px;
+        height: 433px;
+        display: flex;
+        justify-content: center; /* Centers image horizontally inside the 171px */
+        align-items: center;     /* Centers image vertically inside the 433px */
+        background-color: transparent; 
+        overflow: hidden;
+    }
 
-        .music-toggle {
-            /* 2. Shrink the image to fit inside 171px width */
-            /* We use 150px to leave a little breathing room on the sides */
-            width: 150px; 
-            cursor: pointer;
-            animation: float 4s ease-in-out infinite;
-            transition: 0.2s;
-        }
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(10px); }
+        100% { transform: translateY(0px); }
+    }
 
-        .music-toggle:hover {
-            filter: brightness(1.1);
-            transform: scale(1.05);
-        }
-    </style>
+    .music-toggle {
+        width: 150px; 
+        cursor: pointer;
+        animation: float 4s ease-in-out infinite;
+        transition: 0.2s;
+    }
+
+    .music-toggle:hover {
+        filter: brightness(1.1);
+        transform: scale(1.05);
+    }
+</style>
 </head>
 <body>
 
