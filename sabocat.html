@@ -2,35 +2,37 @@
 <html>
 <head>
     <style>
-        /* 1. The Container (The Body) */
         body {
             margin: 0;
             padding: 0;
-            height: 100vh; /* Takes up full screen height */
-            display: flex; /* Activates Flexbox */
-            justify-content: center; /* Centers horizontally */
-            align-items: center; /* Centers vertically */
-            background-color: #fff;
+            /* 1. Force the body to match your section size */
+            width: 171px;
+            height: 433px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent; /* Changed to transparent so it blends in */
             overflow: hidden;
         }
 
-        /* 2. The Animation */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(15px); }
+            50% { transform: translateY(10px); } /* Reduced movement for small space */
             100% { transform: translateY(0px); }
         }
 
-        /* 3. The Image Styling */
         .music-toggle {
-            width: 250px; /* Made it a bit bigger for a center-piece */
+            /* 2. Shrink the image to fit inside 171px width */
+            /* We use 150px to leave a little breathing room on the sides */
+            width: 150px; 
             cursor: pointer;
-            transition: transform 0.2s ease;
             animation: float 4s ease-in-out infinite;
+            transition: 0.2s;
         }
 
         .music-toggle:hover {
             filter: brightness(1.1);
+            transform: scale(1.05);
         }
     </style>
 </head>
