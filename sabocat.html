@@ -2,17 +2,35 @@
 <html>
 <head>
     <style>
-        /* You NEED this CSS or the "animation: float" part of your code won't do anything! */
+        /* 1. The Container (The Body) */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Takes up full screen height */
+            display: flex; /* Activates Flexbox */
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        /* 2. The Animation */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(15px); }
             100% { transform: translateY(0px); }
         }
 
-        body {
-            background-color: #fff; /* Adding a background so you can see the image */
-            margin: 0;
-            height: 100vh;
+        /* 3. The Image Styling */
+        .music-toggle {
+            width: 250px; /* Made it a bit bigger for a center-piece */
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .music-toggle:hover {
+            filter: brightness(1.1);
         }
     </style>
 </head>
@@ -20,8 +38,8 @@
 
     <img src="https://file.garden/aXTkw7hiK3vn4ais/mov51073_0.png" 
          alt="Play Music" 
-         onclick="togglePlayPause()" 
-         style="cursor: pointer; position: fixed; width: 180px; right: 20px; top: 50px; z-index: 9999; animation: float 4s ease-in-out infinite;">
+         class="music-toggle"
+         onclick="togglePlayPause()">
 
     <audio id="music" src="https://file.garden/aXTkw7hiK3vn4ais/ChopperLuffy%20-%20Dr.%20Tony%20Tony%20Chopper.mp3" preload="auto"></audio>
 
@@ -30,10 +48,8 @@
             var audio = document.getElementById('music');
             if (audio.paused) {
                 audio.play();
-                console.log("Music is playing!");
             } else {
                 audio.pause();
-                console.log("Music is paused!");
             }
         }
     </script>
