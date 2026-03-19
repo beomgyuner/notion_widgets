@@ -2,122 +2,104 @@
 <html>
 <head>
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 236px;
+  height: 327px;
+  overflow: hidden;
 }
 
-/* CONTAINER */
-.stamp-reveal-container {
-    width: 220px;
-    aspect-ratio: 236 / 327;
-    position: relative;
-    perspective: 1200px;
-    cursor: pointer;
+/* FRAME (fixed embed size) */
+.frame {
+  width: 236px;
+  height: 327px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* BASE IMAGE */
-.base {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
-
-/* STICKER WRAPPER */
+/* STICKER BASE */
 .sticker {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
 }
 
-/* STATIC PART */
-.sticker-main {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
+/* LAYERS */
+.layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
 }
 
-/* FLAP (THE MAGIC) */
-.flap {
-    position: absolute;
-    inset: 0;
-    transform-origin: top left;
-    transition: transform 0.8s cubic-bezier(.65,.05,.36,1),
-                filter 0.6s ease;
+/* REVEALED IMAGE */
+.bottom {
+  background: url("https://i.ibb.co/G4811wMq/66-SABO.png") center/cover no-repeat;
+  z-index: 1;
 }
 
-/* IMAGE INSIDE */
-.sticker img,
-.flap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
+/* TOP STICKER */
+.top {
+  background: url("https://i.ibb.co/nxG3gx0/66-CHOPPER.png") center/cover no-repeat;
+  z-index: 2;
+
+  transform-origin: top left;
+  transition:
+    transform 0.8s cubic-bezier(.22,1,.36,1),
+    filter 0.4s ease,
+    opacity 0.5s ease;
+
+  box-shadow:
+    0 6px 12px rgba(0,0,0,0.25),
+    inset 0 0 0 1px rgba(255,255,255,0.2);
 }
 
-/* SHADOW + DEPTH */
-.flap {
-    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3));
-}
-
-/* CURL LIGHT */
-.flap::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.5) 0%,
-        rgba(255,255,255,0.2) 20%,
-        transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
+/* LIGHT CURL EFFECT */
+.top::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.35), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 /* PEELED STATE */
-.stamp-reveal-container.peeled .flap {
-    transform: rotate(-40deg) translate(-40%, -40%) scale(0.95);
-    filter: drop-shadow(0 20px 25px rgba(0,0,0,0.5));
+.sticker.peeled .top {
+  transform: rotate(-38deg) translate(-45%, -45%) scale(0.92);
+  filter: brightness(1.1);
+  opacity: 0;
+  box-shadow:
+    0 18px 25px rgba(0,0,0,0.45);
 }
 
-.stamp-reveal-container.peeled .flap::after {
-    opacity: 1;
+/* highlight during peel */
+.sticker.peeled .top::after {
+  opacity: 1;
 }
 
-/* OPTIONAL: slight dim on stuck part */
-.stamp-reveal-container.peeled .sticker-main {
-    filter: brightness(0.9);
+/* subtle adhesive depth on bottom */
+.bottom::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.25);
+  pointer-events: none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="stamp-reveal-container" onclick="this.classList.toggle('peeled')">
+<div class="frame">
+  <div class="sticker" onclick="this.classList.toggle('peeled')">
+    
+    <div class="layer bottom"></div>
+    <div class="layer top"></div>
 
-    <!-- revealed image -->
-    <img src="https://i.ibb.co/G4811wMq/66-SABO.png" class="base">
-
-    <!-- sticker -->
-    <div class="sticker">
-        <div class="sticker-main">
-            <img src="https://i.ibb.co/nxG3gx0/66-CHOPPER.png">
-        </div>
-
-        <!-- peel flap -->
-        <div class="flap">
-            <img src="https://i.ibb.co/nxG3gx0/66-CHOPPER.png">
-        </div>
-    </div>
-
+  </div>
 </div>
 
 </body>
