@@ -1,0 +1,71 @@
+<style>
+  lol {}
+  
+  lol,
+  .img2 {
+    /* album's cover image u can change the size! */
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    color: black;
+    z-index: 999;
+  }
+
+  .img1 {
+    /* cd image u can change the size too */
+    position: absolute;
+    width:auto;
+    height:90px;
+    left: 65px;
+    z-index: 800;
+    -webkit-animation: spin 2s linear infinite;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+  }
+
+  .img1 hover {
+    cursor: help;
+  }
+
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  .img1:hover {
+    /* this makes the cd stop spinning when hovering! */
+    -webkit-animation: pop 0.3s ease;
+  }
+
+</style>
+
+<body>
+  <div id="lol"><img class="img2" src="https://file.garden/aXTkw7hiK3vn4ais/download%20(34).jpg"><img class="img1" src="https://web.archive.org/web/20220514070535im_/https://cdn.discordapp.com/attachments/822589056256311328/890714753780031488/image0.png"></div>
+  <script>
+    document.getElementById("lol").onclick = function() {
+      var audio = document.getElementById("audio");
+      if (audio.paused) audio.play();
+      else audio.pause();
+    };
+
+  </script><audio id="audio" src="https://file.garden/aXTkw7hiK3vn4ais/CHOCOLAT%20feat.%20Mariya%20Ise.mp3"></audio>
+</body>
+</div>
+</div>
+<div>
