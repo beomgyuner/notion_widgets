@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: "MS PGothic", "Segoe UI", sans-serif;
+  }
+
+  .nav-container {
+    width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .nav {
+    display: flex;
+    height: 34px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .nav a {
+    flex: 1;
+    text-align: center;
+    line-height: 34px;
+    text-decoration: none;
+    font-size: 13px;
+    color: #8a6a9e;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  /* dotted separators */
+  .nav a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 7px;
+    height: 20px;
+    border-right: 1px dotted rgba(110, 14, 54);
+  }
+
+  /* hover = soft highlight */
+  .nav a:hover {
+    background: rgba(255,255,255,0.35);
+  }
+
+  /* active / selected tab */
+  .nav a.active {
+    background: linear-gradient(to right, #ffc9db, #ffffff);
+    color: #6e0e36;
+    font-weight: 500;
+  }
+
+</style>
+</head>
+
+<body>
+  <div class="nav-container">
+    <div class="nav">
+      <a href="#" class="active">日誌</a>
+      <a href="#">繪本</a>
+      <a href="#">留言版</a>
+    </div>
+  </div>
+</body>
+</html>
