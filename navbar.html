@@ -63,10 +63,30 @@
 <body>
   <div class="nav-container">
     <div class="nav">
-      <a href="#" class="active">日誌</a>
-      <a href="#">繪本</a>
-      <a href="#">留言版</a>
+      <a id="personal" on click="navigate(this.id)" class="active">PERSONAL</a>
+      <a id="cortis" on click="navigate(this.id)">COLOR OUTSIDE THE LINES</a>
+      <a id="reality" on click="navigate(this.id)">REALITY</a>
     </div>
   </div>
+
+  <script>
+
+    let direction = "horizontal";
+    if (direction === "vertical") {
+      document.head.insertAdjacentHTML ("beforeend", '<style>.nav {display: block; text-align: left; margin:7px} i{width:15px; margin-right:5px} .nav{margin:3px}</
+                                        }
+    function navigate(id) {
+
+      if (id == 'personal')
+        window.open("https://www.notion.so/12082002/wawawa-34daa8b436b680d98807c004977dd4cd", '_blank').focus();
+
+      else if (id == 'cortis')
+        window.open("https://www.notion.so/12082002/cortis-34eaa8b436b680a08689d548aa26c31e", '_blank').focus();
+
+      else if (id == 'reality')
+        window.open("https://www.notion.so/12082002/reality-34eaa8b436b680fb8e62c8fadaff2a46", '_blank').focus();
+    
+  </script>
+  
 </body>
 </html>
