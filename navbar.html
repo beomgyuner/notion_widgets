@@ -53,11 +53,24 @@
     right: 0;
     top: 7px;
     height: 20px;
-    border-right: 1px dotted rgba(110, 14, 54);
+    border-right: 3px dotted rgba(110, 14, 54);
   }
 
   iframe {
   display: block;
+  }
+
+  .blinkie-wrapper {
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  margin-top: 4px;
+  }
+
+.blinkie img {
+  height: 20px;
+  margin: 0 4px;
+  image-rendering: pixelated;
   }
 
 </style>
@@ -102,22 +115,40 @@ document.getElementById("nav").addEventListener("mouseleave", () => {
   moveHighlight(activeIndex);
 });
 
-function moveHighlight(index) {
-  highlight.style.left = (index * 100 / links.length) + "%";
-}
-
 function navigate(id) {
+  let url = "";
+
   if (id === 'personal') {
-    window.open = "https://www.notion.so/12082002/wawawa-34daa8b436b680d98807c004977dd4cd";
+    url = "https://www.notion.so/12082002/wawawa-34daa8b436b680d98807c004977dd4cd";
   }
   else if (id === 'cortis') {
-    window.open = "https://www.notion.so/12082002/cortis-34eaa8b436b680a08689d548aa26c31e";
+    url = "https://www.notion.so/12082002/cortis-34eaa8b436b680a08689d548aa26c31e";
   }
   else if (id === 'reality') {
-    window.open = "https://www.notion.so/12082002/reality-34eaa8b436b680fb8e62c8fadaff2a46";
+    url = "https://www.notion.so/12082002/reality-34eaa8b436b680fb8e62c8fadaff2a46";
   }
+
+  window.open(url, "_top"); // breaks out of Notion iframe
+  }
+  
 }
 </script>
+  
+<div class="blinkie-wrapper">
+  <marquee class="blinkie" behavior="alternate" direction="left"
+    onmouseover="this.stop();" onmouseout="this.start();">
+
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/3dslove.gif">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_4a0e5ab81f521544e92e68e02fba7b8e_50cfb9df_250.webp">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/cutecolorsclub.gif">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_afa0db9d4e6455bccea5b15cb26cf152_4e8293ff_250.gif">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_d6a0c1073e4b0f6c9ee44c3b271d5578_5e39bc54_250.gif">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/purinmacaroon.gif">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_19afad41405709b5c138cb233c67445d_994cd863_250.gif">
+    <img src="https://file.garden/aXTkw7hiK3vn4ais/tumblr_5d7e8a4a398b6a71d53e999d49f63ebe_9e5ced54_250.gif">
+
+  </marquee>
+</div>
 
 </body>
 </html>
