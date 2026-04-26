@@ -38,7 +38,8 @@
   }
 
   .nav a {
-    flex: 1;
+    flex: 0 0 auto;
+    padding: 0 20px;
     text-align: center;
     line-height: 34px;
     text-decoration: none;
@@ -83,7 +84,11 @@ const highlight = document.getElementById("highlight");
 
 // default = PERSONAL
 let activeIndex = 0;
-moveHighlight(activeIndex);
+function moveHighlight(index) {
+  const link = links[index];
+  highlight.style.width = link.offsetWidth + "px";
+  highlight.style.left = link.offsetLeft + "px";
+}
 
 links.forEach((link, index) => {
 
