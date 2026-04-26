@@ -61,11 +61,10 @@
   }
 
 .search-container {
-  width: 900px;
   display: flex;
   height: 36px;
   margin-top: 6px;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "MS Gothic", sans-serif;
 }
 
 .search-container input {
@@ -86,7 +85,7 @@
 .search-container button {
   width: 90px;
   border: none;
-  background: #f07c96;
+  background: #ffc9db;
   color: white;
   font-size: 13px;
   cursor: pointer;
@@ -94,7 +93,7 @@
 }
 
 .search-container button:hover {
-  background: #e66785;
+  background: #eda1b3;
 }
 
 /* result text */
@@ -171,12 +170,15 @@ function navigate(id) {
   <button onclick="handleSearch()">search</button>
 </div>
 
-<div id="searchResult"></div>
-
 <script>
+
+  document.getElementById("searchInput").addEventListener("focus", function() {
+  this.value = "";
+});
+  
 function handleSearch() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const result = document.getElementById("searchResult");
+  const inputEl = document.getElementById("searchInput");
+  const input = inputEl.value.toLowerCase();
 
   if (input.includes("best cortis duo")) {
     result.textContent = "susol!";
@@ -192,6 +194,8 @@ function handleSearch() {
   }
   else {
     result.textContent = "404, not found in the system!";
+  }
+    inputEl.value = response; 
   }
 }
 </script>
