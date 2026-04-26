@@ -157,6 +157,11 @@
 const links = document.querySelectorAll(".nav a");
 const highlight = document.getElementById("highlight");
 
+function moveHighlight(index) {
+  highlight.style.width = (100 / links.length) + "%";
+  highlight.style.transform = `translateX(${index * 100}%)`;
+}
+
 let activeIndex = 0;
 moveHighlight(activeIndex);
 
@@ -191,7 +196,7 @@ function navigate(id) {
     url = "https://www.notion.so/12082002/reality-34eaa8b436b680fb8e62c8fadaff2a46";
   }
 
-  window.open(url, "_top");
+  window.location.href = url;
   
 }
 </script>
