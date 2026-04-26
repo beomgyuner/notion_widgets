@@ -11,16 +11,28 @@
   }
 
   .nav-container {
-    width: 500px;
+    width: 900px;
     margin: 0 auto;
     overflow: hidden;
   }
 
   .nav {
+    position: relative;
     display: flex;
     height: 34px;
     background: #fff;
     overflow: hidden;
+  }
+
+  .highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 33.333%;
+    background: linear-gradient(to right, #ffc9db, #ffffff);
+    transition: 0.3s ease;
+    z-index: 0;
   }
 
   .nav a {
@@ -32,10 +44,10 @@
     color: #8a6a9e;
     letter-spacing: 1px;
     position: relative;
-    transition: all 0.2s ease;
+    z-index: 1;
+    cursor: pointer;
   }
 
-  /* dotted separators */
   .nav a:not(:last-child)::after {
     content: "";
     position: absolute;
@@ -45,49 +57,64 @@
     border-right: 1px dotted rgba(110, 14, 54);
   }
 
-  /* hover = soft highlight */
-  .nav a:hover {
-    background: rgba(255,255,255,0.35);
-  }
-
-  /* active / selected tab */
-  .nav a.active {
-    background: linear-gradient(to right, #ffc9db, #ffffff);
-    color: #6e0e36;
-    font-weight: 500;
-  }
-
 </style>
 </head>
 
 <body>
   <div class="nav-container">
-    <div class="nav">
-      <a id="personal" onclick="navigate(this.id)" class="active">PERSONAL</a>
-      <a id="cortis" onclick="navigate(this.id)">COLOR OUTSIDE THE LINES</a>
-      <a id="reality" onclick="navigate(this.id)">REALITY</a>
+    <div class="nav" id="nav">
+      <div class="highlight" id="highlight"></div>
+
+      <a id="personal">PERSONAL</a>
+      <a id="cortis">COLOR OUTSIDE THE LINES</a>
+      <a id="reality">REALITY</a>
     </div>
   </div>
 
-  <script>
+<script>
+const links = document.querySelectorAll(".nav a");
+const highlight = document.getElementById("highlight");
 
-    let direction = "horizontal";
-    if (direction === "vertical") {
-      document.head.insertAdjacentHTML ("beforeend", '<style>.nav {display: block; text-align: left; margin:7px} i{width:15px; margin-right:5px} .nav{margin:3px}</
-                                        }
-    function navigate(id) {
+// default = PERSONAL
+let activeIndex = 0;
+moveHighlight(activeIndex);
 
-      if (id == 'personal')
-        window.open("https://www.notion.so/12082002/wawawa-34daa8b436b680d98807c004977dd4cd", '_blank').focus();
+links.forEach((link, index) => {
 
-      else if (id == 'cortis')
-        window.open("https://www.notion.so/12082002/cortis-34eaa8b436b680a08689d548aa26c31e", '_blank').focus();
+  // move on hover
+  link.addEventListener("mouseenter", () => {
+    moveHighlight(index);
+  });
 
-      else if (id == 'reality')
-        window.open("https://www.notion.so/12082002/reality-34eaa8b436b680fb8e62c8fadaff2a46", '_blank').focus();
-    }
-    
-  </script>
-  
+  // click = open + set active
+  link.addEventListener("click", () => {
+    activeIndex = index;
+    moveHighlight(index);
+    navigate(link.id);
+  });
+});
+
+// return to active when leaving nav
+document.getElementById("nav").addEventListener("mouseleave", () => {
+  moveHighlight(activeIndex);
+});
+
+function moveHighlight(index) {
+  highlight.style.left = (index * 100 / links.length) + "%";
+}
+
+function navigate(id) {
+  if (id === 'personal') {
+    window.open("https://www.notion.so/12082002/wawawa-34daa8b436b680d98807c004977dd4cd", '_blank');
+  }
+  else if (id === 'cortis') {
+    window.open("https://www.notion.so/12082002/cortis-34eaa8b436b680a08689d548aa26c31e", '_blank');
+  }
+  else if (id === 'reality') {
+    window.open("https://www.notion.so/12082002/reality-34eaa8b436b680fb8e62c8fadaff2a46", '_blank');
+  }
+}
+</script>
+
 </body>
 </html>
