@@ -38,8 +38,7 @@
   }
 
   .nav a {
-    flex: 0 0 auto;
-    padding: 0 20px;
+    flex: 1;
     text-align: center;
     line-height: 34px;
     text-decoration: none;
@@ -73,7 +72,7 @@
       <div class="highlight" id="highlight"></div>
 
       <a id="personal">PERSONAL</a>
-      <a id="cortis">COLOR OUTSIDE THE LINES</a>
+      <a id="cortis">CORTIS</a>
       <a id="reality">REALITY</a>
     </div>
   </div>
@@ -84,11 +83,7 @@ const highlight = document.getElementById("highlight");
 
 // default = PERSONAL
 let activeIndex = 0;
-function moveHighlight(index) {
-  const link = links[index];
-  highlight.style.width = link.offsetWidth + "px";
-  highlight.style.left = link.offsetLeft + "px";
-}
+moveHighlight(activeIndex);
 
 links.forEach((link, index) => {
 
