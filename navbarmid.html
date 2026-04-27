@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: "MS PGothic", "Segoe UI", sans-serif;
+  }
+
+  .nav-container {
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .nav {
+    position: relative;
+    display: flex;
+    height: 34px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 33.333%;
+    background: linear-gradient(to right, #ffc9db, #ffffff);
+    transition: 0.3s ease;
+    z-index: 0;
+  }
+
+  .nav a {
+    flex: 1;
+    text-align: center;
+    line-height: 34px;
+    text-decoration: none;
+    font-size: 13px;
+    color: #8a6a9e;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .nav a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 7px;
+    height: 20px;
+    border-right: 3px dotted rgba(110, 14, 54);
+  }
+
+  iframe {
+  display: block;
+  }
+
+.search-container {
+  display: flex;
+  height: 36px;
+  margin-top: 10px;
+  font-family: "MS Gothic", sans-serif;
+}
+
+.search-container input {
+  flex: 1;
+  border: none;
+  background: #fff;
+  padding: 0 12px;
+  font-size: 13px;
+  border: 1px solid #e9e9e9;
+}
+
+.search-container input::placeholder {
+  color: #999;
+  letter-spacing: 1px;
+}
+
+.search-container button {
+  width: 90px;
+  border: none;
+  background: #ffc9db;
+  border: 1px solid #c7506c;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.search-container button:hover {
+  background: #eda1b3;
+}
+
+#searchResult {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #6e0e36;
+  font-family: "MS Gothic", sans-serif;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+  border: 1px solid #e9e9e9;
+  padding-left: 34px; /* space for icon */
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  pointer-events: none; /* lets clicks pass through */
+}
+
+.search-container button {
+  width: 90px;
+  border: none;
+  background: #f07c96;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+  <div class="nav-container">
+    <div class="nav" id="nav">
+      <div class="highlight" id="highlight"></div>
+
+      <a id="personal">PERSONAL</a>
+      <a id="cortis">CORTIS</a>
+      <a id="reality">REALITY</a>
+    </div>
+  </div>
+
+<script>
+const links = document.querySelectorAll(".nav a");
+const highlight = document.getElementById("highlight");
+
+function moveHighlight(index) {
+  highlight.style.width = (100 / links.length) + "%";
+  highlight.style.transform = `translateX(${index * 100}%)`;
+}
+
+let activeIndex = 1;
+moveHighlight(activeIndex);
+
+links.forEach((link, index) => {
+
+  link.addEventListener("mouseenter", () => {
+    moveHighlight(index);
+  });
+
+  // click = open + set active
+  link.addEventListener("click", () => {
+    activeIndex = index;
+    moveHighlight(index);
+    navigate(link.id);
+  });
+});
+
+document.getElementById("nav").addEventListener("mouseleave", () => {
+  moveHighlight(activeIndex);
+});
+
+function navigate(id) {
+  let url = "";
+
+  if (id === 'personal') {
+    url = "https://www.notion.so/12082002/wawawa-34daa8b436b680d98807c004977dd4cd";
+  }
+  else if (id === 'cortis') {
+    url = "https://www.notion.so/12082002/cortis-34eaa8b436b680a08689d548aa26c31e";
+  }
+  else if (id === 'reality') {
+    url = "https://www.notion.so/12082002/reality-34eaa8b436b680fb8e62c8fadaff2a46";
+  }
+
+  window.open(url, "_top");
+  
+}
+</script>
+  
+<div class="search-container">
+  <div class="search-input-wrapper">
+    <svg class="search-icon" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7" stroke="#ffc9db" stroke-width="2" fill="none"/>
+      <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#ffc9db" stroke-width="2"/>
+    </svg>
+
+    <input type="text" id="searchInput" placeholder="SEARCH...">
+  </div>
+
+  <button onclick="handleSearch()">SEARCH</button>
+</div>
+
+<script>
+
+document.getElementById("searchInput").addEventListener("focus", function() {
+  this.value = "";
+});
+
+function handleSearch() {
+  const inputEl = document.getElementById("searchInput");
+  const input = inputEl.value.toLowerCase();
+
+  let response = "";
+
+  if (input.includes("best cortis duo")) {
+    response = "susol!";
+  }
+  else if (input.includes("best 5th gen group")) {
+    response = "cortis ٩(^ᗜ^ )و ´-";
+  }
+  else if (input.includes("kinomoto sakura irl")) {
+    response = "suvi ʚ♡ɞ";
+  }
+  else if (input.trim() === "") {
+    response = "cat got your tongue ₍^. .^₎⟆";
+  }
+  else {
+    response = "404, not found in the system!";
+  }
+
+  inputEl.value = response; 
+}
+  
+</script>
+
+</body>
+</html>
