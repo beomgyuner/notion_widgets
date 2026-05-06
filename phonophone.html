@@ -1,0 +1,61 @@
+<head>
+  <meta charset="UTF-8">
+  <title>1899</title>
+</head>
+
+<body>
+
+<img src="https://file.garden/aXTkw7hiK3vn4ais/661bddcb38a6557abd516c70-vintage-gramophone-with-brass-horn.png">
+
+    <audio id="music" src="https://file.garden/aXTkw7hiK3vn4ais/IVE%20(%EC%95%84%EC%9D%B4%EB%B8%8C)%20'Bang%20Bang'%20(Color%20Coded%20Lyrics).mp3" preload="auto"></audio>
+
+        <script>
+                var audio = document.getElementById('music');
+
+                function togglePlayPause() {
+	                if (audio.paused) {
+	                	audio.play().catch(err => console.log("play failed:", err));
+                  	} else {
+	             	audio.pause();
+        	}
+        }
+        </script>
+
+<script>
+  const box = document.getElementById("typebox");
+
+   let typing = false;
+
+    function typeText(text, speed = 50) {
+    	if (typing) return; 
+    	typing = true;
+
+    	box.innerHTML = "";
+    	let i = 0;
+
+    	function type() {
+	    	if (i < text.length) {
+		  	box.innerHTML += text.charAt(i);
+		  	i++;
+		  	setTimeout(type, speed);
+	   	} else {
+		  	typing = false;
+	  	}
+  	}
+
+  	type();
+  }
+
+function togglePlayPause() {
+	var audio = document.getElementById('music');
+
+	if (audio.paused) {
+		audio.play().catch(err => console.log(err));
+		typeText("now playing: main theme of final fantasy vii");
+	} else {
+		audio.pause();
+		typeText("not interested?");
+	}
+}
+</script>
+</body>
