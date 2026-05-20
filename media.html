@@ -8,7 +8,6 @@
 
 <style>
 
-/* ===================== ROOT ===================== */
 :root{
   --text:#7a4e6b;
   --pink:#ffb0c9;
@@ -30,7 +29,8 @@ body{
   background-size:50px;
 }
 
-/* ===================== SCROLLBAR ===================== */
+/* SCROLLBAR */
+
 ::-webkit-scrollbar{
   width:8px;
 }
@@ -43,21 +43,22 @@ body{
 
 ::-webkit-scrollbar-track{
   background:#fff0f5;
-  border:1px solid var(--pink);
 }
 
-/* ===================== FONTS ===================== */
-@font-face {
+/* FONTS */
+
+@font-face{
   font-family:'Cavalhatriz';
   src:url('https://file.garden/aXTkw7hiK3vn4ais/Cavalhatriz.ttf') format('truetype');
 }
 
-@font-face {
+@font-face{
   font-family:'Compagnon-Bold';
   src:url('https://humantooth.neocities.org/fonts/Compagnon-Bold.woff') format('woff');
 }
 
-/* ===================== MAIN ===================== */
+/* MAIN */
+
 .container-wrap{
   max-width:1200px;
   margin:auto;
@@ -78,42 +79,45 @@ body{
   padding:8px;
 }
 
-/* ===================== HEADER ===================== */
+/* HEADER */
+
 header{
   height:170px;
   position:relative;
   border-radius:5px;
   overflow:hidden;
-  margin-bottom:10px;
+  margin-bottom:14px;
   border:1px solid var(--border);
   background:url('https://pbs.twimg.com/media/G3W5MIMboAAFz3X?format=jpg&name=large');
   background-size:cover;
+  background-position:center;
 }
 
 header::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top,#ffb0c9b0,transparent);
+  background:linear-gradient(to top,#ffb0c9aa,transparent);
 }
 
 header h1{
   position:absolute;
-  bottom:10px;
+  bottom:12px;
   right:20px;
   z-index:2;
   margin:0;
-  font-family:'Cavalhatriz';
   font-size:3rem;
-  color:white;
+  font-family:'Cavalhatriz';
   font-weight:normal;
+  color:white;
   text-shadow:
     0 0 4px #FFB0C9,
     0 0 8px #FFB0C9,
     0 0 12px #FFB0C9;
 }
 
-/* ===================== BOX ===================== */
+/* SECTION */
+
 .section{
   background:white;
   border:3px solid white;
@@ -139,14 +143,16 @@ header h1{
   padding:12px;
 }
 
-/* ===================== GRID ===================== */
+/* GRID */
+
 .media-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
   gap:12px;
 }
 
-/* ===================== CARD ===================== */
+/* CARD */
+
 .card{
   background:#fffafb;
   border:1px solid var(--pink);
@@ -199,7 +205,8 @@ header h1{
   margin-bottom:6px;
 }
 
-/* ===================== EMPTY STATE ===================== */
+/* EMPTY */
+
 .empty{
   border:2px dashed #ffc1d6;
   border-radius:6px;
@@ -210,7 +217,8 @@ header h1{
   font-size:14px;
 }
 
-/* ===================== FOOTER ===================== */
+/* FOOTER */
+
 footer{
   text-align:center;
   font-size:12px;
@@ -218,146 +226,139 @@ footer{
   margin-top:8px;
 }
 
-<!-- ===================== MOVIES ===================== -->
+/* MOBILE */
+
+@media(max-width:700px){
+
+  header{
+    height:130px;
+  }
+
+  header h1{
+    font-size:2rem;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container-wrap">
+<div class="container">
+
+<header>
+  <h1>media logger ♡</h1>
+</header>
+
+<!-- MOVIES -->
 <section class="section">
 
-  <div class="section-title">
-    MOVIES
-  </div>
+<div class="section-title">MOVIES</div>
 
-  <div class="section-content">
+<div class="section-content">
+<div class="media-grid">
 
-    <div class="media-grid">
+<div class="empty">
+no movie entries yet ♡
+</div>
 
-      <!-- TEMPLATE CARD -->
-      <!--
-      COPY THIS CARD TO ADD A NEW ENTRY
-
-      <div class="card">
-
-        <img src="IMAGE URL HERE">
-
-        <div class="card-body">
-
-          <h3>TITLE HERE</h3>
-
-          <div class="meta">
-            completed / watching / dropped
-          </div>
-
-          <div class="tag">
-            genre
-          </div>
-
-          <div class="review">
-            your thoughts here
-          </div>
-
-          <div class="rating">
-            ★★★★★
-          </div>
-
-        </div>
-
-      </div>
-      -->
-
-      <div class="empty">
-        no movie entries yet ♡
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
 </section>
 
-<!-- ===================== ANIME ===================== -->
+<!-- ANIME -->
 <section class="section">
 
-  <div class="section-title">
-    ANIME
-  </div>
+<div class="section-title">ANIME</div>
 
-  <div class="section-content">
+<div class="section-content">
+<div class="media-grid">
 
-    <div class="media-grid">
+<div class="empty">
+no anime entries yet ♡
+</div>
 
-      <div class="empty">
-        no anime entries yet ♡
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
 </section>
 
-<!-- ===================== SHOWS ===================== -->
+<!-- SHOWS -->
 <section class="section">
 
-  <div class="section-title">
-    SHOWS
-  </div>
+<div class="section-title">SHOWS</div>
 
-  <div class="section-content">
+<div class="section-content">
+<div class="media-grid">
 
-    <div class="media-grid">
+<div class="empty">
+no show entries yet ♡
+</div>
 
-      <div class="empty">
-        no show entries yet ♡
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
 </section>
 
-<!-- ===================== GAMES ===================== -->
+<!-- GAMES -->
 <section class="section">
 
-  <div class="section-title">
-    GAMES
-  </div>
+<div class="section-title">GAMES</div>
 
-  <div class="section-content">
+<div class="section-content">
+<div class="media-grid">
 
-    <div class="media-grid">
+<div class="empty">
+no game entries yet ♡
+</div>
 
-      <div class="empty">
-        no game entries yet ♡
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
 </section>
 
-<!-- ===================== MANGA ===================== -->
+<!-- MANGA -->
 <section class="section">
 
-  <div class="section-title">
-    MANGA
-  </div>
+<div class="section-title">MANGA</div>
 
-  <div class="section-content">
+<div class="section-content">
+<div class="media-grid">
 
-    <div class="media-grid">
+<div class="card">
 
-      <div class="empty">
-        no manga entries yet ♡
-      </div>
+  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Cardcaptor_Sakura_vol1_cover.jpg/250px-Cardcaptor_Sakura_vol1_cover.jpg">
 
+  <div class="card-body">
+
+    <h3>CARDCAPTOR SAKURA</h3>
+
+    <div class="meta">
+      completed
+    </div>
+
+    <div class="tag">
+      magical girl, fantasy
+    </div>
+
+    <div class="review">
+      i love u ccs..
+    </div>
+
+    <div class="rating">
+      ★★★★★
     </div>
 
   </div>
 
+</div>
+</div>
+
+</div>
+</div>
 </section>
 
 <footer>
-  edit entries directly in the html file ♡
+edit directly in the html file ♡
 </footer>
 
 </div>
