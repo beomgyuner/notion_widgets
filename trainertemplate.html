@@ -9,15 +9,19 @@
 
 body{
     margin:0;
-    height:100vh;
+    min-height:100vh;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     background:#ffffff;
     font-family:Arial,sans-serif;
 }
 
-/* CARD */
+/* =========================
+   CARD
+========================= */
 
 .card-container{
     width:736px;
@@ -28,9 +32,14 @@ body{
 .id-card{
     width:100%;
     height:100%;
+
     position:relative;
+
     transform-style:preserve-3d;
-    transition:0.8s;
+    -webkit-transform-style:preserve-3d;
+
+    transition:transform 0.8s ease;
+
     cursor:pointer;
 }
 
@@ -38,36 +47,45 @@ body{
     transform:rotateY(180deg);
 }
 
+/* =========================
+   BOTH SIDES
+========================= */
+
 .card-face{
     position:absolute;
+
     width:100%;
     height:100%;
+
     top:0;
     left:0;
 
     backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
 
-    background:#fff;
-
     border:2px solid #d9d9d9;
     border-radius:14px;
 
     overflow:hidden;
     box-sizing:border-box;
+
+    background:#ffffff;
 }
 
-/* FRONT */
+/* =========================
+   FRONT
+========================= */
 
 .front{
     z-index:2;
-    transform:rotateY(0deg);
 
     display:flex;
     flex-direction:column;
 }
 
-/* BACK */
+/* =========================
+   BACK
+========================= */
 
 .back{
     transform:rotateY(180deg);
@@ -75,15 +93,31 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-
-    position:absolute;
-    top:0;
-    left:0;
 }
-/* HEADER */
+
+.back-inner{
+    width:80%;
+    height:70%;
+
+    border:2px solid #d9d9d9;
+    border-radius:20px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#999;
+    font-size:28px;
+    font-weight:bold;
+}
+
+/* =========================
+   HEADER
+========================= */
 
 .top-header{
     height:42px;
+
     border-bottom:2px solid #d9d9d9;
 
     display:flex;
@@ -95,10 +129,13 @@ body{
     font-weight:bold;
 }
 
-/* BADGES */
+/* =========================
+   BADGES
+========================= */
 
 .badge-section{
     height:60px;
+
     border-bottom:2px solid #d9d9d9;
 
     padding:6px 14px;
@@ -108,6 +145,7 @@ body{
 .badge-title{
     font-size:13px;
     font-weight:bold;
+
     margin-bottom:6px;
 }
 
@@ -121,12 +159,15 @@ body{
     height:34px;
 
     border-radius:50%;
+
     border:2px solid #d9d9d9;
 
     background:#fafafa;
 }
 
-/* MAIN */
+/* =========================
+   MAIN CONTENT
+========================= */
 
 .main-content{
     flex:1;
@@ -138,10 +179,13 @@ body{
 
     padding:18px;
     box-sizing:border-box;
+
     align-items:start;
 }
 
-/* PHOTO */
+/* =========================
+   PHOTO
+========================= */
 
 .photo-area{
     width:220px;
@@ -168,10 +212,12 @@ body{
     object-fit:cover;
 }
 
-/* INFO */
+/* =========================
+   INFO
+========================= */
 
 .info-section{
-    flex:1;
+    width:100%;
 
     display:flex;
     flex-direction:column;
@@ -186,6 +232,7 @@ body{
 
     display:flex;
     justify-content:space-between;
+    align-items:center;
 
     background:#fff;
 }
@@ -198,7 +245,9 @@ body{
     color:#777;
 }
 
-/* POKEMON */
+/* =========================
+   POKEMON
+========================= */
 
 .pokemon-section{
     width:190px;
@@ -231,78 +280,6 @@ body{
     color:#aaa;
 }
 
-/* BACK */
-
-.back{
-    transform:rotateY(180deg);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.back-inner{
-    width:80%;
-    height:70%;
-
-    border:2px solid #d9d9d9;
-    border-radius:20px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    color:#999;
-    font-size:28px;
-    font-weight:bold;
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-    body{
-        padding:20px;
-        height:auto;
-    }
-
-    .card-container{
-        width:100%;
-        height:auto;
-    }
-
-    .id-card{
-        height:auto;
-    }
-
-    .front{
-        position:relative;
-    }
-
-    .main-content{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .photo-area{
-        width:100%;
-        max-width:220px;
-    }
-
-    .pokemon-section{
-        width:100%;
-    }
-
-    .pokemon-grid{
-        grid-template-columns:repeat(3, 1fr);
-    }
-
-    .pokemon-slot{
-        width:100%;
-        height:80px;
-    }
-}
-
 </style>
 </head>
 
@@ -310,7 +287,7 @@ body{
 
 <div class="card-container">
 
-<div class="id-card" onclick="this.classList.toggle('flipped')">
+<div class="id-card" id="trainerCard">
 
     <!-- FRONT -->
     <div class="card-face front">
@@ -416,12 +393,17 @@ body{
     </div>
 
 </div>
+
 </div>
 
 <script>
-document.querySelector(".id-card").addEventListener("click", function(){
-    this.classList.toggle("flipped");
+
+const card = document.getElementById("trainerCard");
+
+card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
 });
+
 </script>
 
 </body>
