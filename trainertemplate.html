@@ -46,8 +46,10 @@ body{
     left:0;
 
     backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
 
     background:#fff;
+
     border:2px solid #d9d9d9;
     border-radius:14px;
 
@@ -58,10 +60,26 @@ body{
 /* FRONT */
 
 .front{
+    z-index:2;
+    transform:rotateY(0deg);
+
     display:flex;
     flex-direction:column;
 }
 
+/* BACK */
+
+.back{
+    transform:rotateY(180deg);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:absolute;
+    top:0;
+    left:0;
+}
 /* HEADER */
 
 .top-header{
@@ -198,8 +216,8 @@ body{
 }
 
 .pokemon-slot{
-    width:85px;
-    height:85px;
+    width:90px;
+    height:90px;
 
     border:2px solid #d9d9d9;
     border-radius:10px;
