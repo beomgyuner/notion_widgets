@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music PNG Widget</title>
+
+<style>
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: transparent;
+}
+
+.music-button {
+    width: 200px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease;
+}
+
+.music-button:hover {
+    transform: scale(1.05);
+}
+
+.shake {
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(-6deg); }
+    40% { transform: rotate(6deg); }
+    60% { transform: rotate(-4deg); }
+    80% { transform: rotate(4deg); }
+    100% { transform: rotate(0deg); }
+}
+</style>
+</head>
+
+<body>
+
+<img
+    src="https://file.garden/aVuNE7vWeAh9ZXOJ/tumblr_1f35545487b07b547615d360b3cf0748_8a0e1c22_640.png"
+    alt="Play Music"
+    class="music-button"
+    id="musicImage"
+/>
+
+<audio id="music">
+    <source src="https://file.garden/aVuNE7vWeAh9ZXOJ/ReDreaming%20Angel%20-%20Angels%20of%20Delusion%20EP%20%20Zenless%20Zone%20Zero.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const image = document.getElementById("musicImage");
+const music = document.getElementById("music");
+
+image.addEventListener("click", () => {
+
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+
+    image.classList.remove("shake");
+    void image.offsetWidth;
+    image.classList.add("shake");
+});
+</script>
+
+</body>
+</html>
