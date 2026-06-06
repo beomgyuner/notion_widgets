@@ -17,11 +17,26 @@ body {
 	background-repeat: repeat;
 }
 
+.music-container {
+    width: 583px;
+    height: 279px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .music-button {
-    width: 200px;
+    width: 190px;
+    height: auto;
+
     cursor: pointer;
     user-select: none;
     transition: transform 0.2s ease;
+}
+
+.music-button:hover {
+    transform: scale(1.05);
 }
 
 .music-button:hover {
@@ -45,22 +60,22 @@ body {
 
 <body>
 
-<img
-    src="https://file.garden/aVuNE7vWeAh9ZXOJ/tumblr_1f35545487b07b547615d360b3cf0748_8a0e1c22_640.png"
-    alt="Play Music"
-    class="music-button"
-    id="musicImage"
-/>
+<div class="music-container" id="musicContainer">
+    <img src="https://file.garden/aVuNE7vWeAh9ZXOJ/tumblr_9801424588d872b984b1fed316f94e3f_4447b598_2048.png" class="music-button">
+    <img src="https://file.garden/aVuNE7vWeAh9ZXOJ/image.png" class="music-button">
+    <img src="https://file.garden/aVuNE7vWeAh9ZXOJ/tumblr_f58d66c1e6e6a78ecba01ccf0312ec3b_64da5810_2048.png" class="music-button">
+</div>
 
 <audio id="music">
     <source src="https://file.garden/aVuNE7vWeAh9ZXOJ/ReDreaming%20Angel%20-%20Angels%20of%20Delusion%20EP%20%20Zenless%20Zone%20Zero.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const image = document.getElementById("musicImage");
+const container = document.getElementById("musicContainer");
+const images = document.querySelectorAll(".music-button");
 const music = document.getElementById("music");
 
-image.addEventListener("click", () => {
+container.addEventListener("click", () => {
 
     if (music.paused) {
         music.play();
@@ -68,9 +83,11 @@ image.addEventListener("click", () => {
         music.pause();
     }
 
-    image.classList.remove("shake");
-    void image.offsetWidth;
-    image.classList.add("shake");
+    images.forEach(img => {
+        img.classList.remove("shake");
+        void img.offsetWidth;
+        img.classList.add("shake");
+    });
 });
 </script>
 
