@@ -121,7 +121,7 @@ to {
 </div></div>
 <div id="musicbox"><div id="music">
  
-<div class="music-controls" onclick="songstart();">
+<div class="music-controls" onclick="playRandomSong();">
 <div class="playy">►</div>
 <div class="pausee">♪</div>
  
@@ -136,21 +136,20 @@ const songs = [
 
 const audio = document.getElementById("tune");
 
-function songstart() {
 
-  // pick random song
-  const randomSong = songs[Math.floor(Math.random() * songs.length)];
+function playRandomSong() {
+    const audio = document.getElementById("tune");
 
-  // load & play it
-  audio.src = randomSong;
-  audio.play();
-
-  // toggle icons
-  $(".playy").hide();
-  $(".pausee").show();
+    if (!audio.src || audio.paused) {
+        const randomSong = songs[Math.floor(Math.random() * songs.length)];
+        audio.src = randomSong;
+        audio.play();
+    } else {
+        audio.pause();
+    }
 }
 </script>
  
-</div></div></div>
- 
+</div></div></div></div>
+
 </body>
