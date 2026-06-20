@@ -1,6 +1,10 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
+
+<base target="_top">
+
 <style>
 
 /* ===================== BODY ===================== */
@@ -10,26 +14,29 @@ body {
 
 /* ===================== FONTS ===================== */
 @font-face {
-	font-family: 'Cavalhatriz', sans-serif; 
+	font-family: 'Cavalhatriz', sans-serif;
 	src: url('https://file.garden/aXTkw7hiK3vn4ais/Cavalhatriz.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
-@font-face {                  
+@font-face {
 	font-family: 'Compagnon-Bold';
 	src: url(https://humantooth.neocities.org/fonts/Compagnon-Bold.woff) format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
-	
 /* ===================== HEADINGS ===================== */
 #title {
 	font-family: 'Compagnon-Bold';
 	font-weight: bold;
-	color: white;n
-	text-shadow: 2px 0px 0px #74a2c6, 0px 2px 0px #74a2c6, -2px 0px 0px #74a2c6, 0px -2px 0px #74a2c6,
+	color: white;
+	text-shadow:
+		2px 0px 0px #74a2c6,
+		0px 2px 0px #74a2c6,
+		-2px 0px 0px #74a2c6,
+		0px -2px 0px #74a2c6,
 		2px 2px 0px #a3736750;
 	font-size: 20px;
 	margin-top: -10px;
@@ -62,7 +69,7 @@ body {
 	font-family: 'Compagnon-Bold';
 	font-weight: bold;
 	color: #ffb0c9;
-	text-shadow: 
+	text-shadow:
 		2px 0px 0px #ffffff,
 		0px 2px 0px #ffffff,
 		-2px 0px 0px #ffffff,
@@ -80,7 +87,11 @@ body {
 	font-family: 'Compagnon-Bold';
 	font-weight: bold;
 	color: #74a2c6;
-	text-shadow: 2px 0px 0px #ffffff, 0px 2px 0px #ffffff, -2px 0px 0px #ffffff, 0px -2px 0px #ffffff,
+	text-shadow:
+		2px 0px 0px #ffffff,
+		0px 2px 0px #ffffff,
+		-2px 0px 0px #ffffff,
+		0px -2px 0px #ffffff,
 		2px 2px 0px #a3736750;
 	font-size: 20px;
 	margin-top: -170px;
@@ -90,7 +101,6 @@ body {
 	z-index: 1;
 }
 
-	
 /* ===================== NAV ===================== */
 nav {
 	background: white;
@@ -107,7 +117,7 @@ nav {
 nav div {
 	background-image: url('https://pbs.twimg.com/media/G3W5MIMboAAFz3X?format=jpg&name=large');
 	background-repeat: repeat;
-	background-size: 250px; 
+	background-size: 250px;
 	font-size: 17px;
 	color: white;
 	text-shadow:
@@ -137,10 +147,12 @@ nav a {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	text-decoration: none;
+	box-sizing: border-box;
 }
 
 nav a:link,
-nav a:visited { 
+nav a:visited {
 	color: #74a2c6;
 }
 
@@ -149,7 +161,7 @@ nav a:focus {
 	background: linear-gradient(to right,#ffd6e6,#ffc1d6,#fff0f6);
 }
 
-  section {
+section {
 	border: 1px solid #D1B9B3;
 	border-radius: 4px;
 	background: white;
@@ -158,27 +170,48 @@ nav a:focus {
 
 </style>
 </head>
+
 <body>
 
+<section class="small">
+	<nav>
+		<div>personally,</div>
 
-    
-		<section class="small">
-			<nav>
-				<div>personally,</div>
-				<a href="https://app.notion.com/p/12082002/about-me-385aa8b436b680de9d62cac22dbf9657">about me</a>
-				<a href="https://app.notion.com/p/12082002/appearance-385aa8b436b6809fb043ebc8c9f20813">appearance</a>
-				<a href="https://app.notion.com/p/12082002/belongings-385aa8b436b680c5913aee1d74bb97e0">belongings</a>
-				<a href="https://app.notion.com/p/12082002/wardrobe-385aa8b436b680659f36eb8f5fca3708">wardrobe</a>
-				<div>a bit about me?</div>
-				<a href="https://app.notion.com/p/12082002/friendship-385aa8b436b6801e9dd1e458df966a2e">friendships</a>
-				<a href="https://app.notion.com/p/12082002/ily-385aa8b436b680ed95d8e92fcac5eecd">i love you!</a>
-				<a href="https://app.notion.com/p/12082002/dms-385aa8b436b680b58caaf6b16457e5e6">message me</a>
-				<a href="https://app.notion.com/p/12082002/socials-385aa8b436b68052be89d5d6be402c27">virtual angel</a>
-				<div>share my world</div>
-				<a href="https://app.notion.com/p/12082002/home-385aa8b436b6802ba3fef5b68a66d7b1">i'm your home</a>
-				<a href="https://app.notion.com/p/12082002/school-385aa8b436b6802eb039f4ece5a9c960">too cool for school</a>
-				<a href="https://app.notion.com/p/12082002/safety-385aa8b436b6801cb1d4f406af720578">keep me safe</a>
-				<a href="https://app.notion.com/p/12082002/additional-385aa8b436b68012baadf25013d39a38">additional</a>
-			</nav>
-    </section>
+		<a href="https://app.notion.com/p/12082002/about-me-385aa8b436b680de9d62cac22dbf9657">about me</a>
+		<a href="https://app.notion.com/p/12082002/appearance-385aa8b436b6809fb043ebc8c9f20813">appearance</a>
+		<a href="https://app.notion.com/p/12082002/belongings-385aa8b436b680c5913aee1d74bb97e0">belongings</a>
+		<a href="https://app.notion.com/p/12082002/wardrobe-385aa8b436b680659f36eb8f5fca3708">wardrobe</a>
+
+		<div>a bit about me?</div>
+
+		<a href="https://app.notion.com/p/12082002/friendship-385aa8b436b6801e9dd1e458df966a2e">friendships</a>
+		<a href="https://app.notion.com/p/12082002/ily-385aa8b436b680ed95d8e92fcac5eecd">i love you!</a>
+		<a href="https://app.notion.com/p/12082002/dms-385aa8b436b680b58caaf6b16457e5e6">message me</a>
+		<a href="https://app.notion.com/p/12082002/socials-385aa8b436b68052be89d5d6be402c27">virtual angel</a>
+
+		<div>share my world</div>
+
+		<a href="https://app.notion.com/p/12082002/home-385aa8b436b6802ba3fef5b68a66d7b1">i'm your home</a>
+		<a href="https://app.notion.com/p/12082002/school-385aa8b436b6802eb039f4ece5a9c960">too cool for school</a>
+		<a href="https://app.notion.com/p/12082002/safety-385aa8b436b6801cb1d4f406af720578">keep me safe</a>
+		<a href="https://app.notion.com/p/12082002/additional-385aa8b436b68012baadf25013d39a38">additional</a>
+	</nav>
+</section>
+
+<script>
+document.querySelectorAll('nav a').forEach(link => {
+	link.addEventListener('click', function(e) {
+		e.preventDefault();
+
+		try {
+			window.top.location.href = this.href;
+		} catch(err) {
+			window.location.href = this.href;
+		}
+	});
+});
+</script>
+
 </body>
+</html>
+```
