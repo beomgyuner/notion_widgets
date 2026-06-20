@@ -11,9 +11,9 @@
 
         color scheme ! will affect the... case(?) and tab color
         can use #hex, rgb(0,0,0), colorname, etc */
-        --overall-color: #f3c9dd;
-        --outline-color: #8f8892;
-        --dark-shadow: #9b929d;
+        --overall-color: #f7bfd7;
+        --outline-color: #c472ab;
+        --dark-shadow: #e69cc9;
         --light-shadow: #fff8fc;
         --screen-gray: #e7e2e8;
 
@@ -48,7 +48,7 @@
     }
     .dantendo .arrows,
     .dantendo .buttons {
-        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0px 1px 1px rgba(196, 114,  165, 0.5));
     }
     .dantendo .arrows a,
     .dantendo .buttons a {
@@ -135,14 +135,14 @@
         border:1px solid var(--outline-color);
         box-shadow:
             0 0 0 3px color-mix(in lch, var(--overall-color) 80%, #fff) inset,
-            0 3px 8px 2px color-mix(in lch, var(--overall-color) 60%, #000) inset;
+            0 3px 8px 2px color-mix(in lch, var(--overall-color) 60%, #d16ba0) inset;
         overflow: hidden;
     }
     .dantendo .screen-divider,
     .dantendo .screen-divider::after,
     .dantendo .screen-divider::before {
         background: var(--overall-color) linear-gradient(rgba(255, 255, 255, 0.5) 10%, transparent 50%);
-        box-shadow: 0 -5px 5px -2px color-mix(in lch, var(--overall-color) 60%, #000) inset;
+        box-shadow: 0 -5px 5px -2px color-mix(in lch, var(--overall-color) 60%, #d16ba0) inset;
         position: absolute;
     }
     .dantendo .screen-divider {
@@ -190,7 +190,7 @@
         border:1px solid var(--outline-color);
         outline:rgba(143,136,146,.45) solid 1px;
         outline-offset: 4px;
-        box-shadow: 0 0 0 5px color-mix(in lch, var(--overall-color) 90%, gray);
+        box-shadow: 0 0 0 5px color-mix(in lch, var(--overall-color) 90%, #d16ba0);
         border-radius: 3%/6%;
         margin-top: calc(3% + 8px);
         margin-inline: auto;
@@ -221,7 +221,7 @@
         width: 5%;
         border-radius: 40%/80%;
         background:#8f8892;
-        filter: drop-shadow(-1px -1px 1px color-mix(in lch, var(--overall-color) 70%, white));
+        filter: drop-shadow(-1px -1px 1px color-mix(196, 114,  165, 0.5) 70%, white));
     }
     .dantendo .upper-screen::before {
         left: 12%;
