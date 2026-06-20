@@ -6,8 +6,11 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 
+
 <body>
+<div class="player-wrap">
 	<div id="miniplay">
+
 
 		<div class="stats">
 			<div class="track-art"></div>
@@ -45,20 +48,49 @@
 	</div>
 
 	</div>
+</div>
+
+
 </body>
 
 <style>
-	#miniplay {
-		width: 18em;
-		height: 10em;
-		font-family: "Inter", serif;
-		background: #F5F5F5;
-		border: 1px solid #D6D6D6;
-		border-radius: .625rem;
-		box-shadow: inset 10px 0px 6px -10px #CCC, inset -10px 0px 6px -10px #CCC, inset 0px 10px 6px -10px #FFF, inset 0px -10px 6px -10px #CCC;
-		padding: 12px;
-		cursor: move;
-	}
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 236px;
+	height: 131px;
+	overflow: hidden;
+}
+
+/* New wrapper for scaling */
+.player-wrap {
+	width: 236px;
+	height: 131px;
+	overflow: hidden;
+}
+	
+#miniplay {
+	width: 18em;
+	height: 10em;
+
+	font-family: "Inter", serif;
+	background: #F5F5F5;
+	border: 1px solid #D6D6D6;
+	border-radius: .625rem;
+	box-shadow:
+		inset 10px 0px 6px -10px #CCC,
+		inset -10px 0px 6px -10px #CCC,
+		inset 0px 10px 6px -10px #FFF,
+		inset 0px -10px 6px -10px #CCC;
+
+	padding: 12px;
+	box-sizing: border-box;
+	cursor: move;
+
+	transform: scale(0.82);
+	transform-origin: top left;
+}
 
 	.stats {
 		display: flex;
