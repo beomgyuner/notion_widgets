@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeonhwi Arts School ID</title>
+
+<style>
+body {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;    
+    overflow: hidden;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.card-container {
+    perspective: 1200px;
+    width: 520px;
+    height: 300px;
+}
+
+.id-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+    cursor: pointer;
+}
+
+.id-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 1px solid #000;
+    border-radius: 18px; /* Rounded edges */
+    padding: 22px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+/* FRONT */
+.header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.subtext {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.content {
+    display: flex;
+    gap: 20px;
+}
+
+.photo {
+    width: 120px;
+    height: 150px;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
+    flex: 1;
+    font-size: 15px;
+}
+
+/* Justified rows */
+.row {
+    display: flex;
+    justify-content: space-between; /* pushes text to far right */
+    border-bottom: 1px solid #ccc;
+    padding: 6px 0;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    text-align: right;
+}
+
+/* BACK */
+.back {
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back img {
+    width: 180px;
+}
+
+/* Responsive */
+@media(max-width: 600px){
+    .card-container {
+        width: 95%;
+        height: auto;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="card-container">
+<div class="id-card" onclick="this.classList.toggle('flipped')">
+
+    <!-- FRONT -->
+    <div class="card-face front">
+        <div class="header">
+            Yeonhwi Arts Academy 연휘예술학교
+        </div>
+
+        <div class="subtext">
+            This certifies that the person below is a registered student of Yeonhwi Arts Academy / 아래 사람은 연휘예술학교에 재학 중인 학생임을 증명합니다.
+        </div>
+
+        <div class="content">
+            <div class="photo">
+                <img src="https://file.garden/aVuNE7vWeAh9ZXOJ/06-21-26_8-47-02%C2%A0PM.png" alt="Student Photo">
+            </div>
+
+            <div class="info">
+                <div class="row">
+                    <span class="label">Full Name</span>
+                    <span class="value">Haliya Mayari Su 할리야 마야리 수</span>
+                </div>
+                <div class="row">
+                    <span class="label">Date of Birth</span>
+                    <span class="value">2008 / 07 / 03</span>
+                </div>
+                <div class="row">
+                    <span class="label">Department</span>
+                    <span class="value">Fashion Design & Creative Direction</span>
+                </div>
+                <div class="row">
+                    <span class="label">Year Level</span>
+                    <span class="value">Year 3</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- BACK -->
+    <div class="card-face back">
+        <img src="https://file.garden/aVuNE7vWeAh9ZXOJ/%EC%97%B0%ED%9C%982.png" alt="School Logo">
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>
