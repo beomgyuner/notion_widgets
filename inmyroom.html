@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* NOTION & LAYOUT RESET */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important; /* Kills scrollbars */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+        }
+
+        .carousel-container {
+            width: 100%;
+            max-width: 450px; /* Adjust this to change size */
+            aspect-ratio: 1 / 1; /* Keeps it perfectly square like IG */
+            position: relative;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .carousel-track img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* NAVIGATION BUTTONS */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #262626;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .carousel-arrow.left { left: 10px; }
+        .carousel-arrow.right { right: 10px; }
+
+        .carousel-arrow:disabled {
+            display: none; /* Hide arrows when at start/end */
+        }
+
+        /* DOT INDICATORS */
+        .carousel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background-color: #fff;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <img src="https://file.garden/aoFKrHDEzjxbjJJr/Sailor%20moon%20inspired%20room%20design%20%F0%9F%8C%99%F0%9F%92%97.jpg" alt="1">
+            <img src="https://file.garden/aoFKrHDEzjxbjJJr/download%20(8).jpg" alt="2">
+            <img src="https://file.garden/aoFKrHDEzjxbjJJr/download%20(9).jpg" alt="3">
+            <img src="https://file.garden/aoFKrHDEzjxbjJJr/polka%20dot%20decor.jpg" alt="4">
+            <img src="https://file.garden/aoFKrHDEzjxbjJJr/%F0%9D%92%A9%E2%84%B4%F0%9D%93%89%20%E2%84%B3%F0%9D%92%BE%F0%9D%93%83%E2%84%AF%20%E0%AD%AD.jpg" alt="5">
+            <img src="https://file.garden/aoFKrHDEzjxbjJJr/download%20(11).jpg" alt="6">
+        </div>
+
+        <button class="carousel-arrow left" disabled><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+
+        <div class="carousel-dots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+            <div class="dot" data-index="4"></div>
+        </div>
+    </div>
+
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const leftArrow = document.querySelector('.carousel-arrow.left');
+        const rightArrow = document.querySelector('.carousel-arrow.right');
+        const dots = Array.from(document.querySelectorAll('.dot'));
+
+        let currentIndex = 0;
+
+        const updateCarousel = (index) => {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            currentIndex = index;
+
+            // Update Arrows
+            leftArrow.disabled = currentIndex === 0;
+            rightArrow.disabled = currentIndex === dots.length - 1;
+
+            // Update Dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        };
+
+        rightArrow.addEventListener('click', () => updateCarousel(currentIndex + 1));
+        leftArrow.addEventListener('click', () => updateCarousel(currentIndex - 1));
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => updateCarousel(i));
+        });
+    </script>
+</body>
+</html>
